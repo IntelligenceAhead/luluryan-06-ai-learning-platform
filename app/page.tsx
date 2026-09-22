@@ -56,6 +56,27 @@ const IDEA_STEPS = [
 
 const IDEA_SPARKS = ["学习", "游戏", "生活", "音乐", "旅行", "运动", "自动化"];
 
+const PROJECT_ORIGINS = [
+  {
+    step: "01",
+    title: "我有一个想法",
+    body: "从自己的兴趣、生活和好奇心出发。",
+    variant: "brand",
+  },
+  {
+    step: "02",
+    title: "真的有人需要",
+    body: "面对真实的市场需求，为真实的人解决问题。",
+    variant: "accent",
+  },
+  {
+    step: "03",
+    title: "老师抛出一个问题",
+    body: "从一个值得研究的方向出发，看看你能走多远。",
+    variant: "warm",
+  },
+] as const;
+
 const TRAINING_STEPS = [
   {
     step: "01",
@@ -232,6 +253,46 @@ export default async function HomePage() {
           从“老师，我不知道做什么”，<br className="hidden sm:block" />
           到“老师，我又想到一个项目”。
         </p>
+      </section>
+
+      {/* 项目从哪里来 */}
+      <section className="container-page py-16 sm:py-20">
+        <SectionHeading
+          eyebrow="项目从哪里来？"
+          title="好项目，不只有一种开始。"
+        />
+        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          {PROJECT_ORIGINS.map((origin) => (
+            <div
+              key={origin.step}
+              className={
+                origin.variant === "brand"
+                  ? "rounded-2xl bg-brand-50/60 p-6 ring-1 ring-inset ring-brand-100"
+                  : origin.variant === "accent"
+                    ? "rounded-2xl bg-accent-100/50 p-6 ring-1 ring-inset ring-accent-300"
+                    : "rounded-2xl bg-warm-100/50 p-6 ring-1 ring-inset ring-warm-300"
+              }
+            >
+              <span
+                className={
+                  origin.variant === "brand"
+                    ? "text-sm font-bold text-brand-700"
+                    : origin.variant === "accent"
+                      ? "text-sm font-bold text-accent-700"
+                      : "text-sm font-bold text-warm-700"
+                }
+              >
+                {origin.step}
+              </span>
+              <h3 className="mt-3 text-lg font-semibold text-ink">
+                {origin.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">
+                {origin.body}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* 项目制学习 */}
