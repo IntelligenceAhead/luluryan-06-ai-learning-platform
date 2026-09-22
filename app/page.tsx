@@ -26,13 +26,35 @@ const REASONS = [
   },
 ];
 
-const LEARNING_STEPS = [
-  { label: "学生作品", hint: "做出一个真实的东西" },
-  { label: "学习内容", hint: "过程中用到的知识" },
-  { label: "AI 知识", hint: "背后的原理与工具" },
-  { label: "能力成长", hint: "可以带走的能力" },
-  { label: "下一步", hint: "项目还能如何延伸" },
+const IDEA_STEPS = [
+  {
+    step: "01",
+    title: "先别急着找项目",
+    body: "看看自己每天在做什么，什么地方麻烦、无聊、不方便，或者特别有兴趣。",
+  },
+  {
+    step: "02",
+    title: "多问一句“能不能？”",
+    body: "能不能让 AI 帮我整理？能不能做成游戏？能不能自动完成？能不能换一种玩法？",
+  },
+  {
+    step: "03",
+    title: "把脑洞记下来",
+    body: "不急着判断好不好。先把那些奇怪、有趣、甚至看起来没什么用的想法留下来。",
+  },
+  {
+    step: "04",
+    title: "挑一个，做出来",
+    body: "不用一开始就做得很大。先做一个能运行的小版本，再慢慢增加自己的想法。",
+  },
+  {
+    step: "05",
+    title: "然后，你会开始停不下来",
+    body: "当你做过几个项目以后，会发现生活里到处都是题目：学习、旅行、运动、音乐、游戏、家庭生活……都可能成为下一个 AI 项目。",
+  },
 ];
+
+const IDEA_SPARKS = ["学习", "游戏", "生活", "音乐", "旅行", "运动", "自动化"];
 
 const TRAINING_STEPS = [
   {
@@ -167,34 +189,54 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 学习路径预览 */}
+      {/* 创新从发现开始 */}
       <section className="container-page py-16 sm:py-20">
         <SectionHeading
-          eyebrow="学习路径"
-          title="从一个作品，看到一条成长线"
-          description="我们把每个项目拆解为“作品 → 知识 → 能力 → 下一步”，让学习过程清晰可见。"
+          eyebrow="创新，从发现开始"
+          title="不是没有想法，只是还没开始留意。"
+          description="一个不方便的瞬间、一道总是做错的题、一次旅行、一项爱好，甚至一句“要是能这样就好了”——都可能变成一个 AI 项目的开始。我们希望同学慢慢养成一种习惯：发现问题，产生想法，然后动手把它做出来。"
         />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {LEARNING_STEPS.map((step, index) => (
+
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {IDEA_STEPS.map((step, index) => (
             <div
-              key={step.label}
-              className="relative rounded-2xl bg-surface p-5 ring-1 ring-inset ring-line"
+              key={step.step}
+              className="flex gap-4 rounded-2xl bg-surface p-5 ring-1 ring-inset ring-line"
             >
-              <span className="text-xs font-semibold text-brand-600">
-                0{index + 1}
+              <span className="text-sm font-bold text-brand-600">
+                {step.step}
               </span>
-              <h3 className="mt-2 font-semibold text-ink">{step.label}</h3>
-              <p className="mt-1 text-xs leading-relaxed text-muted">
-                {step.hint}
-              </p>
+              <div>
+                <h3 className="font-semibold text-ink">{step.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {step.body}
+                </p>
+              </div>
             </div>
           ))}
+
+          {/* 第五格之后的余位：让“一个想法带出更多想法”有一个落脚点 */}
+          <div className="flex flex-col justify-center gap-4 rounded-2xl bg-brand-50/60 p-5 ring-1 ring-inset ring-brand-100">
+            <p className="text-sm leading-relaxed text-brand-800">
+              一个想法会带出更多想法。试着从身边找一找：
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {IDEA_SPARKS.map((spark) => (
+                <span
+                  key={spark}
+                  className="rounded-full bg-surface px-2.5 py-0.5 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200"
+                >
+                  {spark}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="mt-8">
-          <ButtonLink href="/learning-path" variant="secondary">
-            进入学习路径
-          </ButtonLink>
-        </div>
+
+        <p className="mt-10 text-center text-lg font-medium leading-relaxed text-ink sm:text-xl">
+          从“老师，我不知道做什么”，<br className="hidden sm:block" />
+          到“老师，我又想到一个项目”。
+        </p>
       </section>
 
       {/* 训练班体系 */}
