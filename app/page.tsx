@@ -59,33 +59,28 @@ const IDEA_SPARKS = ["学习", "游戏", "生活", "音乐", "旅行", "运动",
 const TRAINING_STEPS = [
   {
     step: "01",
-    title: "AI 到底是什么？",
-    body: "不只学工具，看看 AI 到底在做什么。",
+    title: "把问题说清楚",
+    body: "我们到底要解决什么？不是一上来就写代码。先理解问题、使用场景和真正的需求。",
   },
   {
     step: "02",
-    title: "不用交的作业",
-    body: "没有标准答案，试着把刚学的东西玩出点新花样。",
+    title: "定义要做什么",
+    body: "给谁用？最重要的功能是什么？学会取舍，把一个模糊的想法变成可以执行的项目。",
   },
   {
     step: "03",
-    title: "重新看看这个世界",
-    body: "发现身边的问题：有没有什么可以用 AI 重新做一遍？",
+    title: "先做出第一版",
+    body: "别等完美，先让它跑起来。用 AI 和已经学会的工具快速完成原型，验证自己的想法。",
   },
   {
     step: "04",
-    title: "真实世界在召唤",
-    body: "找一个真实的问题，把自己的想法做成真的。",
+    title: "找人试，再改",
+    body: "真实反馈，比自己猜更有用。测试、发现问题、听取意见，然后一轮一轮迭代。",
   },
   {
     step: "05",
-    title: "假期，一起组队吧！",
-    body: "找到伙伴，分工、碰撞，一起完成更大的挑战。",
-  },
-  {
-    step: "06",
-    title: "项目孵化器",
-    body: "让作品被看见、被体验，也从大家的反馈中继续长大。",
+    title: "发布出去",
+    body: "让作品离开自己的电脑。真正让别人看到、体验和使用，也学会介绍自己为什么这样做。",
   },
 ];
 
@@ -239,19 +234,19 @@ export default async function HomePage() {
         </p>
       </section>
 
-      {/* 训练班体系 */}
+      {/* 项目制学习 */}
       <section className="border-y border-line bg-surface py-16 sm:py-20">
         <div className="container-page">
           <SectionHeading
-            eyebrow="我们的 AI 学习方式"
-            title="学一点，玩一下，最后做个真的。"
-            description="AI 不只是用来学的。理解它、试试它，然后用它解决一个你真正感兴趣的问题。"
+            eyebrow="项目制学习"
+            title="不是完成作业，是把一个项目真正做出来。"
+            description="从一个想法或真实需求开始，像真正的项目团队一样，想清楚问题、做出第一版、测试、修改，最后让作品真正被使用。"
           />
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {TRAINING_STEPS.map((step) => (
-              <div
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {TRAINING_STEPS.map((step, index) => (
+              <li
                 key={step.step}
-                className="flex gap-4 rounded-2xl bg-canvas p-5 ring-1 ring-inset ring-line"
+                className="relative flex gap-4 rounded-2xl bg-canvas p-5 ring-1 ring-inset ring-line"
               >
                 <span className="text-sm font-bold text-brand-600">
                   {step.step}
@@ -262,12 +257,25 @@ export default async function HomePage() {
                     {step.body}
                   </p>
                 </div>
-              </div>
+
+                {/* 轻微流程感：桌面端节点之间的连接箭头 */}
+                {index < TRAINING_STEPS.length - 1 ? (
+                  <span
+                    aria-hidden
+                    className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-line lg:block"
+                  >
+                    →
+                  </span>
+                ) : null}
+              </li>
             ))}
-          </div>
-          <div className="mt-8">
-            <ButtonLink href="/training">看看完整学习方式</ButtonLink>
-          </div>
+          </ol>
+
+          <p className="mt-10 text-center text-lg font-medium leading-relaxed text-ink sm:text-xl">
+            他们经历的，不只是一次作业，
+            <br className="hidden sm:block" />
+            而是一个真实项目从想法到发布的过程。
+          </p>
         </div>
       </section>
 
