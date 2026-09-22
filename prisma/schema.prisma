@@ -1,0 +1,95 @@
+// AI项目制学习成果与成长展示平台 —— 数据模型（第一阶段 MVP）
+// 依据 PLAN.md 第 4 节。数据库：本地 SQLite（开发/MVP），未来可平滑切换 Postgres。
+//
+// 说明：
+// - SQLite 不支持数组类型，因此 tags / ability_tags / ai_knowledge / related_project_ids
+//   以 JSON 字符串存储，由 lib/projects.ts 负责读写转换。
+// - 学生原话 student_quote 为独立字段，禁止自动改写；学生真实姓名不作为公开字段。
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id       String @id @default(cuid())
+  slug     String @unique
+  title    String
+
+  // 作者展示（隐私约束：仅昵称，可匿名；不存储真实姓名）
+  authorDisplay     String
+  authorIsAnonymous Boolean @default(false)
+
+  category  String // ai | code | web | game | agent
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  status    String   @default("ongoing") // ongoing | completed
+
+  demoUrl    String?
+  coverImage String? // 项目封面图路径；为空时前端渲染占位封面
+  screenshots String  @default("[]") // JSON string[]，项目截图路径，可后续直接替换为真实截图
+
+  summary String
+  excerpt String?
+
+  // 学习说明层（核心价值）
+  whyDesigned      String
+  logicFoundation  String
+  aiKnowledge      String // JSON string[]
+  learningOutcomes String
+  studentQuote     String // 学生原话，禁止自动改写
+  studentQuoteAuthor String?
+  futureExtensions String
+
+  // 关联（MVP：JSON 字符串数组；第二阶段：独立表）
+  tags              String // JSON string[]
+  abilityTags       String // JSON string[]
+  relatedProjectIds String // JSON string[]
+
+  // 互动与状态
+  voteCount   Int     @default(0) // 前台统一呈现为“喜欢”，保留字段以兼容已有数据
+  viewCount   Int     @default(0) // 浏览量（本轮为 seed/mock 数据）
+  isFeatured  Boolean @default(false)
+  isPublished Boolean @default(true)
+
+  votes    Vote[]
+  comments Comment[]
+
+  @@index([isPublished, category])
+  @@index([isPublished, status])
+  @@index([createdAt])
+}
+
+model Vote {
+  id        String   @id @default(cuid())
+  projectId String
+  voterKey  String // IP 哈希（服务端防刷），不关联任何身份
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([projectId, voterKey])
+  @@index([projectId])
+  @@index([createdAt])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  projectId String? // MVP 为 null（全局留言板）；第二阶段可填项目 ID
+  nickname  String
+  content   String
+  createdAt DateTime @default(now())
+
+  isVisible    Boolean   @default(true) // 管理员可隐藏
+  adminReply   String?
+  adminReplyAt DateTime?
+
+  project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([createdAt])
+}

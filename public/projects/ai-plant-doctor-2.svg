@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-label="AI植物医生 截图 2">
+  <rect width="1280" height="800" fill="#f1f5f9"/>
+  <rect x="40" y="40" width="1200" height="720" rx="22" fill="#ffffff" stroke="#e2e8f0"/>
+  <rect x="40" y="40" width="1200" height="72" rx="22" fill="#f8fafc"/>
+  <rect x="40" y="90" width="1200" height="22" fill="#f8fafc"/>
+  <circle cx="84" cy="76" r="8" fill="#f87171"/>
+  <circle cx="112" cy="76" r="8" fill="#fbbf24"/>
+  <circle cx="140" cy="76" r="8" fill="#34d399"/>
+  <rect x="176" y="60" width="360" height="32" rx="16" fill="#e2e8f0"/>
+  <text x="86" y="176" font-size="30" font-weight="700" fill="#0f172a" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',system-ui,sans-serif">AI植物医生</text>
+  <text x="86" y="212" font-size="20" fill="#94a3b8" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',system-ui,sans-serif">界面示意 2 · 待替换为真实截图</text>
+      <rect x="120" y="250" width="236" height="140" rx="20" fill="#ffffff" stroke="#e2e8f0"/>
+      <rect x="144" y="278" width="48" height="48" rx="12" fill="#16a34a" opacity="0.85"/>
+      <rect x="144" y="344" width="120" height="18" rx="9" fill="#cbd5e1"/>
+      <rect x="388" y="250" width="236" height="140" rx="20" fill="#ffffff" stroke="#e2e8f0"/>
+      <rect x="412" y="278" width="48" height="48" rx="12" fill="#16a34a" opacity="0.85"/>
+      <rect x="412" y="344" width="134" height="18" rx="9" fill="#cbd5e1"/>
+      <rect x="656" y="250" width="236" height="140" rx="20" fill="#ffffff" stroke="#e2e8f0"/>
+      <rect x="680" y="278" width="48" height="48" rx="12" fill="#16a34a" opacity="0.85"/>
+      <rect x="680" y="344" width="148" height="18" rx="9" fill="#cbd5e1"/>
+      <rect x="924" y="250" width="236" height="140" rx="20" fill="#ffffff" stroke="#e2e8f0"/>
+      <rect x="948" y="278" width="48" height="48" rx="12" fill="#16a34a" opacity="0.85"/>
+      <rect x="948" y="344" width="162" height="18" rx="9" fill="#cbd5e1"/>
+      <rect x="120" y="430" width="1040" height="64" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="146" y="448" width="140" height="28" rx="14" fill="#16a34a" opacity="0.5"/>
+      <rect x="330" y="452" width="420" height="20" rx="10" fill="#cbd5e1"/>
+      <rect x="120" y="514" width="1040" height="64" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="146" y="532" width="170" height="28" rx="14" fill="#16a34a" opacity="0.42"/>
+      <rect x="330" y="536" width="380" height="20" rx="10" fill="#cbd5e1"/>
+      <rect x="120" y="598" width="1040" height="64" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="146" y="616" width="200" height="28" rx="14" fill="#16a34a" opacity="0.33999999999999997"/>
+      <rect x="330" y="620" width="340" height="20" rx="10" fill="#cbd5e1"/>
+      <rect x="120" y="682" width="1040" height="64" rx="16" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="146" y="700" width="230" height="28" rx="14" fill="#16a34a" opacity="0.26"/>
+      <rect x="330" y="704" width="300" height="20" rx="10" fill="#cbd5e1"/>
+  <rect x="40" y="40" width="1200" height="720" rx="22" fill="none" stroke="#0f172a" stroke-opacity="0.04"/>
+</svg>
