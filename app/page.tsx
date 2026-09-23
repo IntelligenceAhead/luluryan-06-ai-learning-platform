@@ -259,42 +259,116 @@ export default async function HomePage() {
             description="像真正的项目团队一样，从一个问题出发，一路做到有人真正使用。"
           />
 
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="hidden lg:mt-12 lg:grid lg:grid-cols-5 lg:gap-4">
             {TRAINING_STEPS.map((step, index) => (
               <li
                 key={step.step}
-                className="relative flex flex-col gap-1.5 rounded-2xl bg-canvas p-5 ring-1 ring-inset ring-line"
+                className={
+                  index === 2
+                    ? "relative flex flex-col items-center gap-3 rounded-2xl bg-brand-50/50 p-4 pt-5 text-center lg:mt-10"
+                    : "relative flex flex-col items-center gap-3 rounded-2xl bg-canvas/70 p-4 pt-5 text-center"
+                }
               >
-                <span className="text-xs font-bold text-brand-600">
-                  {step.step}
+                <span className="relative">
+                  <span
+                    className={
+                      index === TRAINING_STEPS.length - 1
+                        ? "flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white ring-4 ring-brand-100"
+                        : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-surface"
+                    }
+                  >
+                    {step.step}
+                  </span>
+                  {index === TRAINING_STEPS.length - 1 ? (
+                    <span
+                      aria-hidden
+                      className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-700 ring-2 ring-surface"
+                    >
+                      <svg
+                        viewBox="0 0 10 10"
+                        width="8"
+                        height="8"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-white"
+                      >
+                        <path d="M2.5 5.2l1.8 1.8 4-3.6" />
+                      </svg>
+                    </span>
+                  ) : null}
                 </span>
-                <h3 className="text-base font-semibold text-ink">
-                  {step.title}
-                </h3>
+                <h3 className="text-sm font-semibold text-ink">{step.title}</h3>
 
-                {/* 前进关系：桌面端横向箭头，移动端向下箭头 */}
+                {/* 连续路线：节点间的浅色连接线与轻量方向箭头 */}
                 {index < TRAINING_STEPS.length - 1 ? (
-                  <>
-                    <span
-                      aria-hidden
-                      className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-brand-300 lg:block"
-                    >
-                      →
-                    </span>
-                    <span
-                      aria-hidden
-                      className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 text-brand-300 sm:hidden"
-                    >
-                      ↓
-                    </span>
-                  </>
+                  <span
+                    aria-hidden
+                    className="absolute right-0 top-[30px] flex w-6 -translate-y-1/2 items-center justify-center text-brand-300"
+                  >
+                    <svg viewBox="0 0 24 12" width="24" height="12" fill="none" aria-hidden>
+                      <path
+                        d={index === 1 ? "M0 6h16M13 3l3 3-3 3" : index === 2 ? "M0 2c8 0 12 8 24 8" : index === 3 ? "M0 10c8 0 12-8 24-8" : "M0 6h16M13 3l3 3-3 3"}
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
                 ) : null}
               </li>
             ))}
           </ol>
 
-          <div className="mt-8 text-center">
-            <span className="group inline-flex h-12 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-6 text-base font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700">
+          {/* 移动端：纵向时间线 01 ↓ 05 */}
+          <ol className="relative mt-10 flex flex-col gap-5 lg:hidden">
+            <span
+              aria-hidden
+              className="absolute left-[17px] top-5 bottom-5 w-0.5 rounded-full bg-brand-200"
+            />
+            {TRAINING_STEPS.map((step, index) => (
+              <li key={step.step} className="relative flex items-center gap-4">
+                <span className="relative shrink-0">
+                  <span
+                    className={
+                      index === TRAINING_STEPS.length - 1
+                        ? "flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white ring-4 ring-brand-100"
+                        : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-surface"
+                    }
+                  >
+                    {step.step}
+                  </span>
+                  {index === TRAINING_STEPS.length - 1 ? (
+                    <span
+                      aria-hidden
+                      className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-700 ring-2 ring-surface"
+                    >
+                      <svg
+                        viewBox="0 0 10 10"
+                        width="8"
+                        height="8"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        className="text-white"
+                      >
+                        <path d="M2.5 5.2l1.8 1.8 4-3.6" />
+                      </svg>
+                    </span>
+                  ) : null}
+                </span>
+                <h3 className="text-base font-semibold text-ink">{step.title}</h3>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-6 text-center">
+            <span className="group inline-flex h-10 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-5 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700">
               看看一个项目是怎么做出来的
               <span
                 aria-hidden
