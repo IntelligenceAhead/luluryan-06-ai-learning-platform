@@ -51,31 +51,11 @@ const PROJECT_ORIGINS = [
 ] as const;
 
 const TRAINING_STEPS = [
-  {
-    step: "01",
-    title: "把问题说清楚",
-    body: "把创意变成一份项目任务书",
-  },
-  {
-    step: "02",
-    title: "一起头脑风暴",
-    body: "从好点子里，找到真正的需求",
-  },
-  {
-    step: "03",
-    title: "大胆失败",
-    body: "第一版不用完美",
-  },
-  {
-    step: "04",
-    title: "交给用户试试",
-    body: "用户的真实反馈，比我们的猜测更重要",
-  },
-  {
-    step: "05",
-    title: "发布出去",
-    body: "做好“最后一英里”，让作品真正被使用",
-  },
+  { step: "01", title: "把问题说清楚" },
+  { step: "02", title: "一起头脑风暴" },
+  { step: "03", title: "大胆失败" },
+  { step: "04", title: "交给用户试试" },
+  { step: "05", title: "发布出去" },
 ];
 
 export default async function HomePage() {
@@ -276,55 +256,54 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="项目制学习"
             title="不是完成作业，是把一个项目真正做出来。"
-            description="从一个想法或真实需求开始，像真正的项目团队一样，想清楚问题、做出第一版、测试、修改，最后让作品真正被使用。"
+            description="像真正的项目团队一样，从一个问题出发，一路做到有人真正使用。"
           />
 
-          {/* 板块主视觉：项目从想法到发布的过程 */}
-          <div className="mt-10 flex justify-center">
-            <Image
-              src="/images/sections/02-project-learning.png"
-              alt="项目制学习——从想法、原型、测试到发布的项目过程示意"
-              width={1676}
-              height={938}
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              className="h-auto w-full max-w-4xl rounded-3xl shadow-sm"
-            />
-          </div>
-
-          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {TRAINING_STEPS.map((step, index) => (
               <li
                 key={step.step}
-                className="relative flex gap-4 rounded-2xl bg-canvas p-5 ring-1 ring-inset ring-line"
+                className="relative flex flex-col gap-1.5 rounded-2xl bg-canvas p-5 ring-1 ring-inset ring-line"
               >
-                <span className="text-sm font-bold text-brand-600">
+                <span className="text-xs font-bold text-brand-600">
                   {step.step}
                 </span>
-                <div>
-                  <h3 className="font-semibold text-ink">{step.title}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {step.body}
-                  </p>
-                </div>
+                <h3 className="text-base font-semibold text-ink">
+                  {step.title}
+                </h3>
 
-                {/* 轻微流程感：桌面端节点之间的连接箭头 */}
+                {/* 前进关系：桌面端横向箭头，移动端向下箭头 */}
                 {index < TRAINING_STEPS.length - 1 ? (
-                  <span
-                    aria-hidden
-                    className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-line lg:block"
-                  >
-                    →
-                  </span>
+                  <>
+                    <span
+                      aria-hidden
+                      className="absolute -right-3 top-1/2 hidden -translate-y-1/2 text-brand-300 lg:block"
+                    >
+                      →
+                    </span>
+                    <span
+                      aria-hidden
+                      className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 text-brand-300 sm:hidden"
+                    >
+                      ↓
+                    </span>
+                  </>
                 ) : null}
               </li>
             ))}
           </ol>
 
-          <p className="mt-10 text-center text-lg font-medium leading-relaxed text-ink sm:text-xl">
-            他们经历的，不只是一次作业，
-            <br className="hidden sm:block" />
-            而是一个真实项目从想法到发布的过程。
-          </p>
+          <div className="mt-8 text-center">
+            <span className="group inline-flex h-12 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-6 text-base font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700">
+              看看一个项目是怎么做出来的
+              <span
+                aria-hidden
+                className="transition-transform duration-200 group-hover:translate-x-[3px]"
+              >
+                →
+              </span>
+            </span>
+          </div>
         </div>
       </section>
 
