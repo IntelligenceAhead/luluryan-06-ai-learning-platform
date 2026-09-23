@@ -26,34 +26,6 @@ const REASONS = [
   },
 ];
 
-const IDEA_STEPS = [
-  {
-    step: "01",
-    title: "先别急着找项目",
-    body: "看看自己每天在做什么，什么地方麻烦、无聊、不方便，或者特别有兴趣。",
-  },
-  {
-    step: "02",
-    title: "多问一句“能不能？”",
-    body: "能不能让 AI 帮我整理？能不能做成游戏？能不能自动完成？能不能换一种玩法？",
-  },
-  {
-    step: "03",
-    title: "把脑洞记下来",
-    body: "不急着判断好不好。先把那些奇怪、有趣、甚至看起来没什么用的想法留下来。",
-  },
-  {
-    step: "04",
-    title: "挑一个，做出来",
-    body: "不用一开始就做得很大。先做一个能运行的小版本，再慢慢增加自己的想法。",
-  },
-  {
-    step: "05",
-    title: "然后，你会开始停不下来",
-    body: "当你做过几个项目以后，会发现生活里到处都是题目：学习、旅行、运动、音乐、游戏、家庭生活……都可能成为下一个 AI 项目。",
-  },
-];
-
 const IDEA_SPARKS = ["学习", "游戏", "生活", "音乐", "旅行", "运动", "自动化"];
 
 const PROJECT_ORIGINS = [
@@ -210,49 +182,30 @@ export default async function HomePage() {
         <SectionHeading
           eyebrow="创新，从发现开始"
           title="不是没有想法，只是还没开始留意。"
-          description="一个不方便的瞬间、一道总是做错的题、一次旅行、一项爱好，甚至一句“要是能这样就好了”——都可能变成一个 AI 项目的开始。我们希望同学慢慢养成一种习惯：发现问题，产生想法，然后动手把它做出来。"
+          description="学习中的麻烦、生活里的不方便、一次旅行、一个爱好，甚至一句“要是能这样就好了”，都可能成为下一个 AI 项目。"
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {IDEA_STEPS.map((step, index) => (
-            <div
-              key={step.step}
-              className="flex gap-4 rounded-2xl bg-surface p-5 ring-1 ring-inset ring-line"
+        <div className="mt-8 flex flex-wrap gap-2">
+          {IDEA_SPARKS.map((spark) => (
+            <span
+              key={spark}
+              className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200"
             >
-              <span className="text-sm font-bold text-brand-600">
-                {step.step}
-              </span>
-              <div>
-                <h3 className="font-semibold text-ink">{step.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted">
-                  {step.body}
-                </p>
-              </div>
-            </div>
+              {spark}
+            </span>
           ))}
-
-          {/* 第五格之后的余位：让“一个想法带出更多想法”有一个落脚点 */}
-          <div className="flex flex-col justify-center gap-4 rounded-2xl bg-brand-50/60 p-5 ring-1 ring-inset ring-brand-100">
-            <p className="text-sm leading-relaxed text-brand-800">
-              一个想法会带出更多想法。试着从身边找一找：
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {IDEA_SPARKS.map((spark) => (
-                <span
-                  key={spark}
-                  className="rounded-full bg-surface px-2.5 py-0.5 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200"
-                >
-                  {spark}
-                </span>
-              ))}
-            </div>
-          </div>
         </div>
 
-        <p className="mt-10 text-center text-lg font-medium leading-relaxed text-ink sm:text-xl">
-          从“老师，我不知道做什么”，<br className="hidden sm:block" />
-          到“老师，我又想到一个项目”。
+        <p className="mt-6 text-lg font-medium text-ink sm:text-xl">
+          今天有什么事情，让你觉得“要是能这样就好了”？
         </p>
+
+        <div className="mt-6">
+          <span className="inline-flex cursor-default items-center gap-1 rounded-full text-sm font-medium text-brand-700 ring-1 ring-inset ring-brand-200 transition-colors hover:bg-brand-50">
+            去创意实验室看看 →
+          </span>
+          <p className="mt-2 text-xs text-muted">内页筹备中，敬请期待</p>
+        </div>
       </section>
 
       {/* 项目从哪里来 */}
