@@ -391,7 +391,7 @@ export default async function HomePage() {
 
       {/* 创意孵化器 · 首页入口 */}
       <section className="container-page py-16 sm:py-20">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-surface to-accent-100/60 px-6 py-12 ring-1 ring-inset ring-brand-100 sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-surface to-accent-100/60 px-6 py-11 ring-1 ring-inset ring-brand-100 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
           <div
             aria-hidden
             className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-brand-200/40 blur-3xl"
@@ -401,17 +401,19 @@ export default async function HomePage() {
             className="pointer-events-none absolute -bottom-24 right-24 h-56 w-56 rounded-full bg-accent-100/70 blur-3xl"
           />
 
-          <div className="relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
               <Badge variant="brand">创意孵化器 · Idea Incubator</Badge>
-              <h2 className="mt-5 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
-                有想法的时候，就回来把它做出来。
+              <h2 className="mt-4 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+                有想法的时候，
+                <br className="hidden sm:block" />
+                就回来把它做出来。
               </h2>
-              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+              <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
                 课程会结束，创造不会。带着一个新想法、一个真实需求，甚至一个还没想清楚的问题回来，让它慢慢长成一个真正的项目。
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-2">
                 {INCUBATOR_TAGS.map((tag) => (
                   <span
                     key={tag}
@@ -422,7 +424,7 @@ export default async function HomePage() {
                 ))}
               </div>
 
-              <div className="mt-8">
+              <div className="mt-6">
                 <span className="group inline-flex h-12 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-7 text-base font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-md">
                   进入创意孵化器
                   <span
@@ -432,7 +434,7 @@ export default async function HomePage() {
                     →
                   </span>
                 </span>
-                <p className="mt-3 text-xs text-muted sm:text-sm">
+                <p className="mt-2.5 text-xs text-muted sm:text-sm">
                   长期开放 · 导师支持 · 项目协作
                 </p>
               </div>
@@ -441,16 +443,74 @@ export default async function HomePage() {
             {/* 右侧：轻量“创意生长”抽象装饰（无人物插画） */}
             <div className="relative hidden lg:block" aria-hidden>
               <svg viewBox="0 0 340 260" className="h-full w-full" fill="none">
-                <circle cx="180" cy="130" r="96" stroke="#c7d2fe" strokeWidth="1" strokeDasharray="3 6" />
-                <path d="M90 250 C90 190 96 150 130 118" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M180 250 C180 200 196 160 226 122" stroke="#67e8f9" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M270 250 C270 216 288 188 310 164" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="134" cy="112" r="6" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
-                <circle cx="231" cy="116" r="8" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
-                <circle cx="314" cy="158" r="5" fill="#e0e7ff" stroke="#6366f1" strokeWidth="1.5" />
-                <circle cx="70" cy="180" r="3" fill="#c7d2fe" />
-                <circle cx="310" cy="70" r="4" fill="#cffafe" />
-                <circle cx="240" cy="40" r="3" fill="#c7d2fe" />
+                <circle
+                  cx="180"
+                  cy="126"
+                  r="98"
+                  stroke="#c7d2fe"
+                  strokeWidth="1"
+                  strokeDasharray="3 7"
+                />
+                <circle
+                  cx="226"
+                  cy="96"
+                  r="20"
+                  stroke="#c7d2fe"
+                  strokeWidth="1"
+                  strokeDasharray="2 6"
+                />
+                <path
+                  d="M88 252 C100 208 102 164 128 112"
+                  stroke="#a5b4fc"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M176 252 C190 200 194 152 226 104"
+                  stroke="#67e8f9"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M264 252 C272 222 288 190 308 157"
+                  stroke="#a5b4fc"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                <circle cx="130" cy="106" r="11" fill="#818cf8" opacity="0.10" />
+                <circle cx="226" cy="96" r="14" fill="#06b6d4" opacity="0.10" />
+                <circle cx="308" cy="152" r="10" fill="#6366f1" opacity="0.10" />
+                <circle
+                  cx="130"
+                  cy="106"
+                  r="6"
+                  fill="#e0e7ff"
+                  stroke="#818cf8"
+                  strokeWidth="1.5"
+                />
+                <circle
+                  cx="226"
+                  cy="96"
+                  r="8"
+                  fill="#cffafe"
+                  stroke="#06b6d4"
+                  strokeWidth="1.5"
+                />
+                <circle
+                  cx="308"
+                  cy="152"
+                  r="5"
+                  fill="#e0e7ff"
+                  stroke="#6366f1"
+                  strokeWidth="1.5"
+                />
+                <circle cx="106" cy="182" r="2.5" fill="#c7d2fe" />
+                <circle cx="152" cy="146" r="2" fill="#a5b4fc" />
+                <circle cx="196" cy="170" r="2.5" fill="#67e8f9" opacity="0.8" />
+                <circle cx="272" cy="204" r="2" fill="#c7d2fe" />
+                <circle cx="64" cy="150" r="3" fill="#c7d2fe" opacity="0.8" />
+                <circle cx="300" cy="62" r="3.5" fill="#a5b4fc" opacity="0.6" />
+                <circle cx="240" cy="40" r="2.5" fill="#67e8f9" opacity="0.7" />
               </svg>
             </div>
           </div>
