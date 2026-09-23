@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { FeaturedProjectPreview } from "@/components/project/FeaturedProjectPreview";
 import { ProjectCard } from "@/components/project/ProjectCard";
 import { Badge } from "@/components/ui/Badge";
@@ -179,32 +180,47 @@ export default async function HomePage() {
 
       {/* 创新从发现开始 */}
       <section className="container-page py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="创新，从发现开始"
-          title="不是没有想法，只是还没开始留意。"
-          description="学习中的麻烦、生活里的不方便、一次旅行、一个爱好，甚至一句“要是能这样就好了”，都可能成为下一个 AI 项目。"
-        />
+        <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+          <div>
+            <SectionHeading
+              eyebrow="创新，从发现开始"
+              title="不是没有想法，只是还没开始留意。"
+              description="学习中的麻烦、生活里的不方便、一次旅行、一个爱好，甚至一句“要是能这样就好了”，都可能成为下一个 AI 项目。"
+            />
 
-        <div className="mt-8 flex flex-wrap gap-2">
-          {IDEA_SPARKS.map((spark) => (
-            <span
-              key={spark}
-              className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200"
-            >
-              {spark}
-            </span>
-          ))}
-        </div>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {IDEA_SPARKS.map((spark) => (
+                <span
+                  key={spark}
+                  className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200"
+                >
+                  {spark}
+                </span>
+              ))}
+            </div>
 
-        <p className="mt-6 text-lg font-medium text-ink sm:text-xl">
-          今天有什么事情，让你觉得“要是能这样就好了”？
-        </p>
+            <p className="mt-6 text-lg font-medium text-ink sm:text-xl">
+              今天有什么事情，让你觉得“要是能这样就好了”？
+            </p>
 
-        <div className="mt-6">
-          <span className="inline-flex cursor-default items-center gap-1 rounded-full text-sm font-medium text-brand-700 ring-1 ring-inset ring-brand-200 transition-colors hover:bg-brand-50">
-            去创意实验室看看 →
-          </span>
-          <p className="mt-2 text-xs text-muted">内页筹备中，敬请期待</p>
+            <div className="mt-6">
+              <span className="inline-flex cursor-default items-center gap-1 rounded-full text-sm font-medium text-brand-700 ring-1 ring-inset ring-brand-200 transition-colors hover:bg-brand-50">
+                去创意实验室看看 →
+              </span>
+              <p className="mt-2 text-xs text-muted">内页筹备中，敬请期待</p>
+            </div>
+          </div>
+
+          <div className="relative">
+            <Image
+              src="/images/sections/01-innovation.png"
+              alt="创意从发现开始——从日常的麻烦与好奇心里长出 AI 项目想法"
+              width={1677}
+              height={938}
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="h-auto w-full rounded-3xl shadow-sm"
+            />
+          </div>
         </div>
       </section>
 
