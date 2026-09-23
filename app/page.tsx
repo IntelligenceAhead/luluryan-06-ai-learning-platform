@@ -279,15 +279,15 @@ export default async function HomePage() {
             description="从一个想法或真实需求开始，像真正的项目团队一样，想清楚问题、做出第一版、测试、修改，最后让作品真正被使用。"
           />
 
-          {/* 板块主视觉：项目从想法到发布的过程 */}
-          <div className="mt-10 flex justify-center">
+          {/* 板块主视觉：从学习走向独立创造的成长路径 */}
+          <div className="mt-10">
             <Image
-              src="/images/sections/02-project-learning.png"
-              alt="项目制学习——从想法、原型、测试到发布的项目过程示意"
-              width={1676}
+              src="/images/sections/05-training.png"
+              alt="项目制学习成长路径——从好奇学习、用 AI 解决问题，到独立完成项目、成为青年创造者"
+              width={1677}
               height={938}
-              sizes="(min-width: 1024px) 60vw, 100vw"
-              className="h-auto w-full max-w-4xl rounded-3xl shadow-sm"
+              sizes="(min-width: 1024px) 1152px, 100vw"
+              className="h-auto w-full rounded-3xl shadow-sm"
             />
           </div>
 
