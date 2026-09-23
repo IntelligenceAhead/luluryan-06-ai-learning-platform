@@ -29,6 +29,8 @@ const REASONS = [
 
 const IDEA_SPARKS = ["学习", "游戏", "生活", "音乐", "旅行", "运动", "自动化"];
 
+const INCUBATOR_TAGS = ["我的新想法", "真实需求", "新的挑战"];
+
 const PROJECT_ORIGINS = [
   {
     step: "01",
@@ -383,6 +385,74 @@ export default async function HomePage() {
                 →
               </span>
             </span>
+          </div>
+        </div>
+      </section>
+
+      {/* 创意孵化器 · 首页入口 */}
+      <section className="container-page py-16 sm:py-20">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-surface to-accent-100/60 px-6 py-12 ring-1 ring-inset ring-brand-100 sm:px-10 sm:py-14 lg:px-14 lg:py-16">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-brand-200/40 blur-3xl"
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -bottom-24 right-24 h-56 w-56 rounded-full bg-accent-100/70 blur-3xl"
+          />
+
+          <div className="relative grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <Badge variant="brand">创意孵化器 · Idea Incubator</Badge>
+              <h2 className="mt-5 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+                有想法的时候，就回来把它做出来。
+              </h2>
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+                课程会结束，创造不会。带着一个新想法、一个真实需求，甚至一个还没想清楚的问题回来，让它慢慢长成一个真正的项目。
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {INCUBATOR_TAGS.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="mt-8">
+                <span className="group inline-flex h-12 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-7 text-base font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-md">
+                  进入创意孵化器
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-200 group-hover:translate-x-[3px]"
+                  >
+                    →
+                  </span>
+                </span>
+                <p className="mt-3 text-xs text-muted sm:text-sm">
+                  长期开放 · 导师支持 · 项目协作
+                </p>
+              </div>
+            </div>
+
+            {/* 右侧：轻量“创意生长”抽象装饰（无人物插画） */}
+            <div className="relative hidden lg:block" aria-hidden>
+              <svg viewBox="0 0 340 260" className="h-full w-full" fill="none">
+                <circle cx="180" cy="130" r="96" stroke="#c7d2fe" strokeWidth="1" strokeDasharray="3 6" />
+                <path d="M90 250 C90 190 96 150 130 118" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M180 250 C180 200 196 160 226 122" stroke="#67e8f9" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M270 250 C270 216 288 188 310 164" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="134" cy="112" r="6" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
+                <circle cx="231" cy="116" r="8" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
+                <circle cx="314" cy="158" r="5" fill="#e0e7ff" stroke="#6366f1" strokeWidth="1.5" />
+                <circle cx="70" cy="180" r="3" fill="#c7d2fe" />
+                <circle cx="310" cy="70" r="4" fill="#cffafe" />
+                <circle cx="240" cy="40" r="3" fill="#c7d2fe" />
+              </svg>
+            </div>
           </div>
         </div>
       </section>
