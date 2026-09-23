@@ -204,10 +204,16 @@ export default async function HomePage() {
             </p>
 
             <div className="mt-6">
-              <span className="inline-flex cursor-default items-center gap-1 rounded-full text-sm font-medium text-brand-700 ring-1 ring-inset ring-brand-200 transition-colors hover:bg-brand-50">
-                去创意实验室看看 →
+              <span className="group inline-flex h-[48px] w-fit cursor-default items-center gap-2 rounded-2xl bg-gradient-to-b from-brand-500 to-brand-600 px-8 text-[17px] font-semibold text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:h-[54px] sm:px-9 sm:text-lg">
+                去创意实验室看看
+                <span
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover:translate-x-[3px]"
+                >
+                  →
+                </span>
               </span>
-              <p className="mt-2 text-xs text-muted">内页筹备中，敬请期待</p>
+              <p className="mt-3 text-sm text-muted">内页筹备中，敬请期待</p>
             </div>
           </div>
 
