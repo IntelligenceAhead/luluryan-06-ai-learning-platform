@@ -278,7 +278,20 @@ export default async function HomePage() {
             title="不是完成作业，是把一个项目真正做出来。"
             description="从一个想法或真实需求开始，像真正的项目团队一样，想清楚问题、做出第一版、测试、修改，最后让作品真正被使用。"
           />
-          <ol className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+
+          {/* 板块主视觉：项目从想法到发布的过程 */}
+          <div className="mt-10 flex justify-center">
+            <Image
+              src="/images/sections/02-project-learning.png"
+              alt="项目制学习——从想法、原型、测试到发布的项目过程示意"
+              width={1676}
+              height={938}
+              sizes="(min-width: 1024px) 60vw, 100vw"
+              className="h-auto w-full max-w-4xl rounded-3xl shadow-sm"
+            />
+          </div>
+
+          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {TRAINING_STEPS.map((step, index) => (
               <li
                 key={step.step}
