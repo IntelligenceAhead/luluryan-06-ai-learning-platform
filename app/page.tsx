@@ -50,7 +50,7 @@ const PROJECT_ORIGINS = [
   },
 ] as const;
 
-const PROJECT_SOURCES = ["自己的想法", "真实需求", "研究挑战"];
+const PROJECT_SOURCES = ["自己的创意", "真实需求", "研究挑战"];
 
 const PROJECT_STEPS = [
   { step: "01", title: "定义问题" },
@@ -264,7 +264,7 @@ export default async function HomePage() {
           {/* 第一层：项目从哪里开始？ */}
           <div className="mx-auto mt-10 max-w-2xl">
             <p className="text-center text-xs font-semibold tracking-wide text-muted">
-              项目从哪里开始？
+              一个项目，可以从很多地方开始。
             </p>
 
             <div className="mt-4 grid grid-cols-3 gap-3">
@@ -298,8 +298,32 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* 项目开始 → 进入真实项目过程 */}
-          <div className="mt-3 flex justify-center" aria-hidden>
+          {/* 项目开始 → 01 定义问题：桌面端折线明确落到 01 */}
+          <div className="mt-2 hidden lg:block" aria-hidden>
+            <svg
+              viewBox="0 0 1000 52"
+              preserveAspectRatio="none"
+              className="h-[52px] w-full"
+              fill="none"
+            >
+              <path
+                d="M500 0 V12 Q500 24 488 24 H112 Q100 24 100 36 V44"
+                stroke="#c7d2fe"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+              <path
+                d="M95 38l5 6 5-6"
+                stroke="#a5b4fc"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+
+          {/* 移动端：项目开始 → 01（纵向路径紧随其后） */}
+          <div className="mt-3 flex justify-center lg:hidden" aria-hidden>
             <svg width="16" height="26" viewBox="0 0 16 26" fill="none" className="text-brand-300">
               <path
                 d="M8 0v18M3 14l5 5 5-5"
@@ -401,6 +425,19 @@ export default async function HomePage() {
               </li>
             ))}
           </ol>
+
+          {/* 项目管理贯穿 01—05 全过程（辅助层，不占节点） */}
+          <div className="mt-8">
+            <span aria-hidden className="block h-px w-full bg-line" />
+            <div className="mt-4 text-center">
+              <p className="text-xs font-medium tracking-wide text-muted">
+                项目管理贯穿全过程
+              </p>
+              <p className="mt-1 text-[11px] tracking-wide text-muted">
+                计划 · 分工 · 协作 · 进度 · 复盘
+              </p>
+            </div>
+          </div>
 
           <div className="mt-8 text-center">
             <span className="group inline-flex h-10 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-5 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700">
