@@ -60,6 +60,12 @@ const PROJECT_STEPS = [
   { step: "05", title: "真实检验" },
 ];
 
+const GROWTH_STAGES = [
+  { step: "01", title: "先跟着做", hint: "知道AI能帮我做什么" },
+  { step: "02", title: "开始自己解决", hint: "遇到不会的，就去学" },
+  { step: "03", title: "独立创造", hint: "从完成任务，到发起自己的项目" },
+];
+
 export default async function HomePage() {
   const [featured, comments] = await Promise.all([
     getFeaturedProjects(4),
@@ -450,6 +456,127 @@ export default async function HomePage() {
               </span>
             </span>
           </div>
+        </div>
+      </section>
+
+      {/* AI项目制训练班 */}
+      <section className="container-page py-16 sm:py-20">
+        <SectionHeading eyebrow="AI项目制训练班" title="会用AI，只是开始。" />
+        <p className="mt-3 max-w-2xl text-base font-medium text-ink-soft sm:text-lg">
+          真正的目标，是越来越能自己把想法做出来。
+        </p>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+          从老师带着做，到自己解决问题，再到独立发起项目。学习的重点不是记住某个工具，而是逐渐获得创造的能力。
+        </p>
+
+        {/* 成长过程图片 */}
+        <div className="mt-8">
+          <Image
+            src="/images/sections/05-training.png"
+            alt="AI 项目制训练班的成长过程——从老师带着做，到自己解决问题，再到独立创造"
+            width={1677}
+            height={938}
+            sizes="(min-width: 1024px) 1152px, 100vw"
+            className="h-auto w-full rounded-3xl shadow-sm"
+          />
+        </div>
+
+        {/* 桌面端：三个成长阶段，逐渐独立 */}
+        <div className="relative mt-12 hidden lg:block">
+          <svg
+            viewBox="0 0 1000 36"
+            preserveAspectRatio="none"
+            className="absolute inset-x-0 top-0 h-9 w-full"
+            fill="none"
+            aria-hidden
+          >
+            <path d="M167 18 H833" stroke="#c7d2fe" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M328.5 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M661.5 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+
+          <ol className="relative grid grid-cols-3">
+            {GROWTH_STAGES.map((stage, index) => (
+              <li
+                key={stage.step}
+                className="flex flex-col items-center gap-2.5 text-center"
+              >
+                <span className="relative z-20">
+                  <span
+                    className={
+                      index === GROWTH_STAGES.length - 1
+                        ? "flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white ring-4 ring-brand-100"
+                        : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-canvas"
+                    }
+                  >
+                    {stage.step}
+                  </span>
+                </span>
+                <h3
+                  className={
+                    index === GROWTH_STAGES.length - 1
+                      ? "text-sm font-semibold text-brand-700"
+                      : "text-sm font-semibold text-ink"
+                  }
+                >
+                  {stage.title}
+                </h3>
+                <p className="max-w-[16rem] text-xs leading-relaxed text-muted">
+                  {stage.hint}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* 移动端：纵向三个阶段 */}
+        <ol className="relative mt-10 flex flex-col gap-6 lg:hidden">
+          {GROWTH_STAGES.map((stage, index) => (
+            <li key={stage.step} className="relative flex items-start gap-4">
+              <span className="relative z-10 shrink-0">
+                <span
+                  className={
+                    index === GROWTH_STAGES.length - 1
+                      ? "flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white ring-4 ring-brand-100"
+                      : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-canvas"
+                  }
+                >
+                  {stage.step}
+                </span>
+              </span>
+              <div>
+                <h3
+                  className={
+                    index === GROWTH_STAGES.length - 1
+                      ? "text-base font-semibold text-brand-700"
+                      : "text-base font-semibold text-ink"
+                  }
+                >
+                  {stage.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {stage.hint}
+                </p>
+              </div>
+
+              {index < GROWTH_STAGES.length - 1 ? (
+                <span
+                  aria-hidden
+                  className="absolute left-[17px] top-10 h-[calc(100%-1rem)] w-0.5 rounded-full bg-brand-200"
+                />
+              ) : null}
+            </li>
+          ))}
+        </ol>
+
+        {/* 收束句 */}
+        <p className="mt-12 text-center text-lg font-medium leading-relaxed text-ink sm:text-xl">
+          老师逐渐退后，学生逐渐走到前面。
+        </p>
+
+        {/* CTA */}
+        <div className="mt-6 text-center">
+          <ButtonLink href="/training">了解AI项目制训练班 →</ButtonLink>
         </div>
       </section>
 
