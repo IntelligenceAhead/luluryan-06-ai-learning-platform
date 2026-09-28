@@ -403,7 +403,7 @@ export default async function HomePage() {
 
           <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <Badge variant="brand">创意孵化器 · Idea Incubator</Badge>
+              <Badge variant="brand">梦想孵化器 · Dream Incubator</Badge>
               <h2 className="mt-4 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
                 有想法的时候，
                 <br className="hidden sm:block" />
@@ -426,7 +426,7 @@ export default async function HomePage() {
 
               <div className="mt-6">
                 <span className="group inline-flex h-12 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-7 text-base font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-md">
-                  进入创意孵化器
+                  进入梦想孵化器
                   <span
                     aria-hidden
                     className="transition-transform duration-200 group-hover:translate-x-[3px]"
@@ -435,7 +435,7 @@ export default async function HomePage() {
                   </span>
                 </span>
                 <p className="mt-2.5 text-xs text-muted sm:text-sm">
-                  长期开放 · 导师支持 · 项目协作
+                  寻找伙伴 · 导师支持 · 项目协作
                 </p>
               </div>
             </div>
