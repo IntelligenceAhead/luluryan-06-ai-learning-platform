@@ -647,7 +647,7 @@ export default async function HomePage() {
                 width={1672}
                 height={941}
                 sizes="(min-width: 1024px) 56vw, 100vw"
-                className="h-auto w-full rounded-3xl [mask-image:linear-gradient(to_bottom,transparent,black_18%)] lg:rounded-none lg:[mask-image:linear-gradient(to_right,transparent,black_30%)]"
+                className="h-auto w-full [mask-image:linear-gradient(to_bottom,transparent_0%,black_12%,black_88%,transparent_100%)] lg:[mask-image:radial-gradient(ellipse_85%_88%_at_70%_50%,black_50%,transparent_95%)]"
               />
             </div>
           </div>
