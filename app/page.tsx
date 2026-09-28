@@ -29,8 +29,6 @@ const REASONS = [
 
 const IDEA_SPARKS = ["学习", "游戏", "生活", "音乐", "旅行", "运动", "自动化"];
 
-const INCUBATOR_TAGS = ["我的新想法", "真实需求", "新的挑战"];
-
 const PROJECT_ORIGINS = [
   {
     step: "01",
@@ -389,7 +387,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 创意孵化器 · 首页入口 */}
+      {/* 梦想孵化器 · 首页入口 */}
       <section className="container-page py-16 sm:py-20">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-surface to-accent-100/60 px-6 py-11 ring-1 ring-inset ring-brand-100 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
           <div
@@ -405,24 +403,17 @@ export default async function HomePage() {
             <div>
               <Badge variant="brand">梦想孵化器 · Dream Incubator</Badge>
               <h2 className="mt-4 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
-                有想法的时候，
-                <br className="hidden sm:block" />
-                就回来把它做出来。
+                一个好想法，值得走得更远。
               </h2>
               <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
-                课程会结束，创造不会。带着一个新想法、一个真实需求，甚至一个还没想清楚的问题回来，让它慢慢长成一个真正的项目。
+                课程会结束，但有些项目才刚刚开始。
+                <br className="hidden sm:block" />
+                在这里，找到伙伴、遇见导师，让一个想法继续生长。
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
-                {INCUBATOR_TAGS.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <p className="mt-5 text-sm font-medium text-brand-700">
+                找到伙伴 · 导师同行 · 挑战更大的项目
+              </p>
 
               <div className="mt-6">
                 <span className="group inline-flex h-12 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-7 text-base font-medium text-white shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-md">
@@ -434,83 +425,72 @@ export default async function HomePage() {
                     →
                   </span>
                 </span>
-                <p className="mt-2.5 text-xs text-muted sm:text-sm">
-                  寻找伙伴 · 导师支持 · 项目协作
-                </p>
               </div>
             </div>
 
             {/* 右侧：轻量“创意生长”抽象装饰（无人物插画） */}
             <div className="relative hidden lg:block" aria-hidden>
               <svg viewBox="0 0 340 260" className="h-full w-full" fill="none">
+                {/* 环境：淡虚线圆环 */}
                 <circle
-                  cx="180"
-                  cy="126"
+                  cx="188"
+                  cy="128"
                   r="98"
                   stroke="#c7d2fe"
                   strokeWidth="1"
                   strokeDasharray="3 7"
                 />
-                <circle
-                  cx="226"
-                  cy="96"
-                  r="20"
-                  stroke="#c7d2fe"
-                  strokeWidth="1"
-                  strokeDasharray="2 6"
-                />
+
+                {/* 不同起点出发的三条线，逐渐汇聚 */}
                 <path
-                  d="M88 252 C100 208 102 164 128 112"
+                  d="M52 248 C108 234 142 198 178 158 C204 130 232 112 268 100"
                   stroke="#a5b4fc"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
                 <path
-                  d="M176 252 C190 200 194 152 226 104"
+                  d="M146 252 C180 230 204 194 226 158 C244 130 258 116 272 104"
                   stroke="#67e8f9"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
                 <path
-                  d="M264 252 C272 222 288 190 308 157"
+                  d="M244 246 C258 222 268 190 276 158 C282 136 284 120 280 106"
                   stroke="#a5b4fc"
                   strokeWidth="1.5"
                   strokeLinecap="round"
                 />
-                <circle cx="130" cy="106" r="11" fill="#818cf8" opacity="0.10" />
-                <circle cx="226" cy="96" r="14" fill="#06b6d4" opacity="0.10" />
-                <circle cx="308" cy="152" r="10" fill="#6366f1" opacity="0.10" />
-                <circle
-                  cx="130"
-                  cy="106"
-                  r="6"
-                  fill="#e0e7ff"
+
+                {/* 汇聚后继续向右上方延伸 */}
+                <path
+                  d="M278 102 C296 84 304 70 318 48"
                   stroke="#818cf8"
                   strokeWidth="1.5"
+                  strokeLinecap="round"
                 />
-                <circle
-                  cx="226"
-                  cy="96"
-                  r="8"
-                  fill="#cffafe"
-                  stroke="#06b6d4"
-                  strokeWidth="1.5"
-                />
-                <circle
-                  cx="308"
-                  cy="152"
-                  r="5"
-                  fill="#e0e7ff"
-                  stroke="#6366f1"
-                  strokeWidth="1.5"
-                />
-                <circle cx="106" cy="182" r="2.5" fill="#c7d2fe" />
-                <circle cx="152" cy="146" r="2" fill="#a5b4fc" />
-                <circle cx="196" cy="170" r="2.5" fill="#67e8f9" opacity="0.8" />
-                <circle cx="272" cy="204" r="2" fill="#c7d2fe" />
-                <circle cx="64" cy="150" r="3" fill="#c7d2fe" opacity="0.8" />
-                <circle cx="300" cy="62" r="3.5" fill="#a5b4fc" opacity="0.6" />
-                <circle cx="240" cy="40" r="2.5" fill="#67e8f9" opacity="0.7" />
+
+                {/* 起点：三个小想法光点 */}
+                <circle cx="52" cy="248" r="4" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
+                <circle cx="146" cy="252" r="3.5" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
+                <circle cx="244" cy="246" r="3.5" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
+
+                {/* 汇聚点：遇见伙伴、得到支持 */}
+                <circle cx="279" cy="102" r="12" fill="#06b6d4" opacity="0.10" />
+                <circle cx="279" cy="102" r="7" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
+
+                {/* 右上终点：走向更大的项目 */}
+                <circle cx="320" cy="46" r="16" fill="#6366f1" opacity="0.10" />
+                <circle cx="320" cy="46" r="22" stroke="#c7d2fe" strokeWidth="1" strokeDasharray="2 6" />
+                <circle cx="320" cy="46" r="9" fill="#e0e7ff" stroke="#6366f1" strokeWidth="1.5" />
+
+                {/* 极淡的轨迹光点 */}
+                <circle cx="104" cy="212" r="2.5" fill="#c7d2fe" />
+                <circle cx="190" cy="146" r="2" fill="#a5b4fc" />
+                <circle cx="222" cy="196" r="2" fill="#c7d2fe" />
+                <circle cx="248" cy="180" r="2.5" fill="#67e8f9" opacity="0.8" />
+                <circle cx="300" cy="120" r="2.5" fill="#a5b4fc" opacity="0.7" />
+                <circle cx="70" cy="120" r="3" fill="#c7d2fe" opacity="0.8" />
+                <circle cx="250" cy="56" r="2.5" fill="#67e8f9" opacity="0.6" />
               </svg>
             </div>
           </div>
