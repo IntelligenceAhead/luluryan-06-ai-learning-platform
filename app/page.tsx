@@ -50,12 +50,14 @@ const PROJECT_ORIGINS = [
   },
 ] as const;
 
-const TRAINING_STEPS = [
-  { step: "01", title: "把问题说清楚" },
-  { step: "02", title: "一起头脑风暴" },
-  { step: "03", title: "大胆失败" },
-  { step: "04", title: "交给用户试试" },
-  { step: "05", title: "发布出去" },
+const PROJECT_SOURCES = ["自己的想法", "真实需求", "研究挑战"];
+
+const PROJECT_STEPS = [
+  { step: "01", title: "定义问题" },
+  { step: "02", title: "原型试错" },
+  { step: "03", title: "用户测试" },
+  { step: "04", title: "发布" },
+  { step: "05", title: "真实检验" },
 ];
 
 export default async function HomePage() {
@@ -256,124 +258,151 @@ export default async function HomePage() {
           <SectionHeading
             eyebrow="项目制学习"
             title="不是完成作业，是把一个项目真正做出来。"
-            description="像真正的项目团队一样，从一个问题出发，一路做到有人真正使用。"
+            description="从真实问题出发，在真实反馈中迭代，最后交给真实世界检验。"
           />
 
-          <div className="relative hidden lg:block">
-            {/* 统一项目路线：一条淡蓝紫细线从 01 连到 05，随 03 轻微下沉、04 回升 */}
+          {/* 第一层：项目从哪里开始？ */}
+          <div className="mx-auto mt-10 max-w-2xl">
+            <p className="text-center text-xs font-semibold tracking-wide text-muted">
+              项目从哪里开始？
+            </p>
+
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              {PROJECT_SOURCES.map((source) => (
+                <span
+                  key={source}
+                  className="justify-self-center rounded-full bg-surface px-3 py-2 text-xs font-medium text-ink-soft ring-1 ring-inset ring-line sm:px-4 sm:text-sm"
+                >
+                  {source}
+                </span>
+              ))}
+            </div>
+
+            {/* 三个来源汇聚到“项目开始” */}
             <svg
-              viewBox="0 0 1000 64"
+              viewBox="0 0 600 44"
               preserveAspectRatio="none"
-              className="absolute inset-x-0 top-0 z-10 h-16 w-full"
+              className="mt-1 h-11 w-full"
               fill="none"
               aria-hidden
             >
+              <path d="M100 0 C100 18 300 24 300 42" stroke="#c7d2fe" strokeWidth="1.5" />
+              <path d="M300 0 V42" stroke="#c7d2fe" strokeWidth="1.5" />
+              <path d="M500 0 C500 18 300 24 300 42" stroke="#c7d2fe" strokeWidth="1.5" />
+            </svg>
+
+            <div className="flex justify-center">
+              <span className="inline-flex items-center rounded-full bg-brand-600 px-5 py-2 text-sm font-semibold text-white ring-4 ring-brand-100">
+                项目开始
+              </span>
+            </div>
+          </div>
+
+          {/* 项目开始 → 进入真实项目过程 */}
+          <div className="mt-3 flex justify-center" aria-hidden>
+            <svg width="16" height="26" viewBox="0 0 16 26" fill="none" className="text-brand-300">
               <path
-                d="M100 32 H300 C380 32 420 56 500 56 C580 56 620 44 700 44 H900"
-                stroke="#c7d2fe"
+                d="M8 0v18M3 14l5 5 5-5"
+                stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
+                strokeLinejoin="round"
               />
-              <path d="M196.5 28.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M396.5 40.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M596.5 46.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              <path d="M796.5 34.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+
+          {/* 第二层：真实项目过程（桌面端横向路径） */}
+          <div className="relative mt-4 hidden lg:block">
+            <svg
+              viewBox="0 0 1000 36"
+              preserveAspectRatio="none"
+              className="absolute inset-x-0 top-0 h-9 w-full"
+              fill="none"
+              aria-hidden
+            >
+              <path d="M100 18 H900" stroke="#c7d2fe" strokeWidth="1.5" strokeLinecap="round" />
+              <path d="M197 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M397 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M597 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M797 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
 
             <ol className="relative grid grid-cols-5">
-              {TRAINING_STEPS.map((step, index) => (
+              {PROJECT_STEPS.map((step, index) => (
                 <li
                   key={step.step}
-                  className={
-                    index === 2
-                      ? "relative flex flex-col items-center gap-2 rounded-2xl bg-brand-50/50 px-4 py-3.5 text-center lg:mt-6"
-                      : index === 3
-                        ? "relative flex flex-col items-center gap-2 rounded-2xl bg-canvas/70 px-4 py-3.5 text-center lg:mt-3"
-                        : "relative flex flex-col items-center gap-2 rounded-2xl bg-canvas/70 px-4 py-3.5 text-center"
-                  }
+                  className="flex flex-col items-center gap-2.5 text-center"
                 >
                   <span className="relative z-20">
                     <span
                       className={
-                        index === TRAINING_STEPS.length - 1
+                        index === PROJECT_STEPS.length - 1
                           ? "flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white ring-4 ring-brand-100"
                           : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-surface"
                       }
                     >
                       {step.step}
                     </span>
-                    {index === TRAINING_STEPS.length - 1 ? (
+                    {index === PROJECT_STEPS.length - 1 ? (
                       <span
                         aria-hidden
-                        className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-700 ring-2 ring-surface"
-                      >
-                        <svg
-                          viewBox="0 0 10 10"
-                          width="8"
-                          height="8"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="text-white"
-                        >
-                          <path d="M2.5 5.2l1.8 1.8 4-3.6" />
-                        </svg>
-                      </span>
+                        className="absolute -inset-2 rounded-full border border-dashed border-brand-300"
+                      />
                     ) : null}
                   </span>
-                  <h3 className="text-sm font-semibold text-ink">{step.title}</h3>
+                  <h3
+                    className={
+                      index === PROJECT_STEPS.length - 1
+                        ? "text-sm font-semibold text-brand-700"
+                        : "text-sm font-semibold text-ink"
+                    }
+                  >
+                    {step.title}
+                  </h3>
                 </li>
               ))}
             </ol>
           </div>
 
-          {/* 移动端：纵向时间线 01 ↓ 05 */}
-          <ol className="relative mt-10 flex flex-col gap-5 lg:hidden">
+          {/* 移动端：纵向项目路径 */}
+          <ol className="relative mt-6 flex flex-col gap-5 lg:hidden">
             <span
               aria-hidden
               className="absolute left-[17px] top-5 bottom-5 w-0.5 rounded-full bg-brand-200"
             />
-            {TRAINING_STEPS.map((step, index) => (
+            {PROJECT_STEPS.map((step, index) => (
               <li key={step.step} className="relative flex items-center gap-4">
                 <span className="relative shrink-0">
                   <span
                     className={
-                      index === TRAINING_STEPS.length - 1
+                      index === PROJECT_STEPS.length - 1
                         ? "flex h-9 w-9 items-center justify-center rounded-full bg-brand-500 text-xs font-bold text-white ring-4 ring-brand-100"
                         : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-surface"
                     }
                   >
                     {step.step}
                   </span>
-                  {index === TRAINING_STEPS.length - 1 ? (
+                  {index === PROJECT_STEPS.length - 1 ? (
                     <span
                       aria-hidden
-                      className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-brand-700 ring-2 ring-surface"
-                    >
-                      <svg
-                        viewBox="0 0 10 10"
-                        width="8"
-                        height="8"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="text-white"
-                      >
-                        <path d="M2.5 5.2l1.8 1.8 4-3.6" />
-                      </svg>
-                    </span>
+                      className="absolute -inset-2 rounded-full border border-dashed border-brand-300"
+                    />
                   ) : null}
                 </span>
-                <h3 className="text-base font-semibold text-ink">{step.title}</h3>
+                <h3
+                  className={
+                    index === PROJECT_STEPS.length - 1
+                      ? "text-base font-semibold text-brand-700"
+                      : "text-base font-semibold text-ink"
+                  }
+                >
+                  {step.title}
+                </h3>
               </li>
             ))}
           </ol>
 
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <span className="group inline-flex h-10 w-fit cursor-default items-center gap-2 rounded-full bg-brand-600 px-5 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brand-700">
               看看一个项目是怎么做出来的
               <span
