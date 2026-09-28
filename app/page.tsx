@@ -461,24 +461,28 @@ export default async function HomePage() {
 
       {/* AI项目制训练班 */}
       <section className="container-page py-16 sm:py-20">
-        <SectionHeading eyebrow="AI项目制训练班" title="会用AI，只是开始。" />
-        <p className="mt-3 max-w-2xl text-base font-medium text-ink-soft sm:text-lg">
-          真正的目标，是越来越能自己把想法做出来。
-        </p>
-        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-          从老师带着做，到自己解决问题，再到独立发起项目。学习的重点不是记住某个工具，而是逐渐获得创造的能力。
-        </p>
+        {/* 上半部分：左侧文字 / 右侧成长图片（图片为辅助视觉） */}
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          <div>
+            <SectionHeading eyebrow="AI项目制训练班" title="会用AI，只是开始。" />
+            <p className="mt-3 max-w-2xl text-base font-medium text-ink-soft sm:text-lg">
+              真正的目标，是越来越能自己把想法做出来。
+            </p>
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+              从老师带着做，到自己解决问题，再到独立发起项目。学习的重点不是记住某个工具，而是逐渐获得创造的能力。
+            </p>
+          </div>
 
-        {/* 成长过程图片 */}
-        <div className="mt-8">
-          <Image
-            src="/images/sections/05-training.png"
-            alt="AI 项目制训练班的成长过程——从老师带着做，到自己解决问题，再到独立创造"
-            width={1677}
-            height={938}
-            sizes="(min-width: 1024px) 1152px, 100vw"
-            className="h-auto w-full rounded-3xl shadow-sm"
-          />
+          <div>
+            <Image
+              src="/images/sections/05-training.png"
+              alt="AI 项目制训练班的成长过程——从老师带着做，到自己解决问题，再到独立创造"
+              width={1677}
+              height={938}
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="h-auto w-full rounded-3xl shadow-sm"
+            />
+          </div>
         </div>
 
         {/* 桌面端：三个成长阶段，逐渐独立 */}
