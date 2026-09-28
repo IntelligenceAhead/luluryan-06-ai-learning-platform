@@ -598,7 +598,7 @@ export default async function HomePage() {
 
           <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <Badge variant="brand">梦想孵化器 · Dream Incubator</Badge>
+              <Badge variant="brand">梦想孵化器</Badge>
               <h2 className="mt-4 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
                 一个好想法，值得走得更远。
               </h2>
@@ -625,69 +625,31 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* 右侧：轻量“创意生长”抽象装饰（无人物插画） */}
+            {/* 右侧：正在形成的创意网络（无人物插画） */}
             <div className="relative hidden lg:block" aria-hidden>
               <svg viewBox="0 0 340 260" className="h-full w-full" fill="none">
-                {/* 环境：淡虚线圆环 */}
-                <circle
-                  cx="188"
-                  cy="128"
-                  r="98"
-                  stroke="#c7d2fe"
-                  strokeWidth="1"
-                  strokeDasharray="3 7"
-                />
+                {/* 连接线：由淡到清晰，逐渐向核心汇聚 */}
+                <path d="M48 232 L96 182" stroke="#c7d2fe" strokeWidth="1.25" opacity="0.55" strokeLinecap="round" />
+                <path d="M48 232 L142 214" stroke="#c7d2fe" strokeWidth="1.25" opacity="0.45" strokeLinecap="round" />
+                <path d="M142 214 L180 140" stroke="#c7d2fe" strokeWidth="1.25" opacity="0.6" strokeLinecap="round" />
+                <path d="M96 182 L222 102" stroke="#a5b4fc" strokeWidth="1.25" opacity="0.75" strokeLinecap="round" />
+                <path d="M180 140 L222 102" stroke="#a5b4fc" strokeWidth="1.5" opacity="0.85" strokeLinecap="round" />
 
-                {/* 不同起点出发的三条线，逐渐汇聚 */}
-                <path
-                  d="M52 248 C108 234 142 198 178 158 C204 130 232 112 268 100"
-                  stroke="#a5b4fc"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M146 252 C180 230 204 194 226 158 C244 130 258 116 272 104"
-                  stroke="#67e8f9"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M244 246 C258 222 268 190 276 158 C282 136 284 120 280 106"
-                  stroke="#a5b4fc"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
+                {/* 从核心继续向更远处生长 */}
+                <path d="M222 102 L300 46" stroke="#818cf8" strokeWidth="1.5" strokeLinecap="round" />
 
-                {/* 汇聚后继续向右上方延伸 */}
-                <path
-                  d="M278 102 C296 84 304 70 318 48"
-                  stroke="#818cf8"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
+                {/* 核心与终点的柔光 */}
+                <circle cx="222" cy="102" r="17" fill="#06b6d4" opacity="0.10" />
+                <circle cx="300" cy="46" r="18" fill="#6366f1" opacity="0.10" />
+                <circle cx="300" cy="46" r="24" stroke="#c7d2fe" strokeWidth="1" strokeDasharray="2 6" />
 
-                {/* 起点：三个小想法光点 */}
-                <circle cx="52" cy="248" r="4" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
-                <circle cx="146" cy="252" r="3.5" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
-                <circle cx="244" cy="246" r="3.5" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
-
-                {/* 汇聚点：遇见伙伴、得到支持 */}
-                <circle cx="279" cy="102" r="12" fill="#06b6d4" opacity="0.10" />
-                <circle cx="279" cy="102" r="7" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
-
-                {/* 右上终点：走向更大的项目 */}
-                <circle cx="320" cy="46" r="16" fill="#6366f1" opacity="0.10" />
-                <circle cx="320" cy="46" r="22" stroke="#c7d2fe" strokeWidth="1" strokeDasharray="2 6" />
-                <circle cx="320" cy="46" r="9" fill="#e0e7ff" stroke="#6366f1" strokeWidth="1.5" />
-
-                {/* 极淡的轨迹光点 */}
-                <circle cx="104" cy="212" r="2.5" fill="#c7d2fe" />
-                <circle cx="190" cy="146" r="2" fill="#a5b4fc" />
-                <circle cx="222" cy="196" r="2" fill="#c7d2fe" />
-                <circle cx="248" cy="180" r="2.5" fill="#67e8f9" opacity="0.8" />
-                <circle cx="300" cy="120" r="2.5" fill="#a5b4fc" opacity="0.7" />
-                <circle cx="70" cy="120" r="3" fill="#c7d2fe" opacity="0.8" />
-                <circle cx="250" cy="56" r="2.5" fill="#67e8f9" opacity="0.6" />
+                {/* 节点：从最初的小而淡，到逐渐明显 */}
+                <circle cx="48" cy="232" r="3.5" fill="#eef2ff" stroke="#c7d2fe" strokeWidth="1.25" opacity="0.75" />
+                <circle cx="96" cy="182" r="4.5" fill="#e0e7ff" stroke="#a5b4fc" strokeWidth="1.25" opacity="0.85" />
+                <circle cx="142" cy="214" r="4" fill="#eef2ff" stroke="#c7d2fe" strokeWidth="1.25" opacity="0.8" />
+                <circle cx="180" cy="140" r="6" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
+                <circle cx="222" cy="102" r="10" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
+                <circle cx="300" cy="46" r="11" fill="#e0e7ff" stroke="#6366f1" strokeWidth="1.5" />
               </svg>
             </div>
           </div>
