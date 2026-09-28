@@ -189,9 +189,9 @@ export default async function HomePage() {
 
       {/* AI项目制训练班 */}
       <section className="container-page py-16 sm:py-20">
-        {/* 上半部分：左侧文字 / 右侧成长图片（图片为辅助视觉） */}
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-          <div>
+        {/* 上半部分：左侧成长图片 / 右侧文字（与创新模块形成交错布局） */}
+        <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
+          <div className="lg:order-2">
             <SectionHeading eyebrow="AI项目制训练班" title="会用AI，只是开始。" />
             <p className="mt-3 max-w-2xl text-base font-medium text-ink-soft sm:text-lg">
               真正的目标，是越来越能自己把想法做出来。
@@ -201,7 +201,7 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div>
+          <div className="lg:order-1">
             <Image
               src="/images/sections/05-training.png"
               alt="AI 项目制训练班的成长过程——从老师带着做，到自己解决问题，再到独立创造"
