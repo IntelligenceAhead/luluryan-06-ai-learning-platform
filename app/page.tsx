@@ -596,7 +596,21 @@ export default async function HomePage() {
             className="pointer-events-none absolute -bottom-24 right-24 h-56 w-56 rounded-full bg-accent-100/70 blur-3xl"
           />
 
-          <div className="relative grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
+          {/* 少量背景光点，呼应生长与连接 */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-[44%] top-14 hidden h-2 w-2 rounded-full bg-brand-300/60 lg:block"
+          />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-[52%] top-2/3 hidden h-1.5 w-1.5 rounded-full bg-accent-300/70 lg:block"
+          />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute left-[47%] bottom-12 hidden h-1.5 w-1.5 rounded-full bg-brand-200 lg:block"
+          />
+
+          <div className="relative grid gap-8 lg:grid-cols-[44fr_56fr] lg:items-center">
             <div>
               <Badge variant="brand">梦想孵化器</Badge>
               <h2 className="mt-4 max-w-lg text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
@@ -625,15 +639,15 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* 右侧：孵化与成长的辅助视觉 */}
-            <div>
+            {/* 右侧：与背景融合的成长视觉，向右延伸到模块边缘 */}
+            <div className="lg:-mr-14">
               <Image
                 src="/images/sections/06-dream-incubator.png"
                 alt="梦想孵化器——一个想法被孵化、获得支持，逐渐生长的过程"
                 width={1672}
                 height={941}
-                sizes="(min-width: 1024px) 40vw, 100vw"
-                className="h-auto w-full rounded-3xl shadow-sm"
+                sizes="(min-width: 1024px) 56vw, 100vw"
+                className="h-auto w-full rounded-3xl [mask-image:linear-gradient(to_bottom,transparent,black_18%)] lg:rounded-none lg:[mask-image:linear-gradient(to_right,transparent,black_30%)]"
               />
             </div>
           </div>
