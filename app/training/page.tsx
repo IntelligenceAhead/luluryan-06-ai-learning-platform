@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ProjectLearningFlow } from "@/components/project/ProjectLearningFlow";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -73,6 +74,18 @@ export default function TrainingPage() {
               咨询与留言
             </ButtonLink>
           </div>
+        </div>
+      </section>
+
+      {/* 项目制学习 */}
+      <section className="border-b border-line bg-surface py-16 sm:py-20">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="项目制学习"
+            title="一个项目，是怎么做出来的？"
+            description="不是完成一次作业，而是经历一个项目真正发生的过程。"
+          />
+          <ProjectLearningFlow />
         </div>
       </section>
 
