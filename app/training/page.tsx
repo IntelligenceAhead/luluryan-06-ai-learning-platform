@@ -2,69 +2,72 @@ import type { Metadata } from "next";
 import { ProjectLearningFlow } from "@/components/project/ProjectLearningFlow";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
   title: "AI项目制训练班",
   description:
-    "以项目为载体的 AI 训练班：每周小课 → 课后挑战 → 思维拓展 → 项目开发 → 小组研发 → 成果展示。",
+    "导师给方向，但不替学生完成——通过项目制训练，让学生真正学会解决问题并完成项目。",
 };
 
-const LADDER = [
+const MENTOR_STEPS = [
   {
     step: "01",
-    title: "每周小课",
-    body: "用一个具体问题引入一个核心概念，不讲空泛的理论。",
+    title: "给方向",
+    body: "导师帮助学生理解问题、明确目标。",
   },
   {
     step: "02",
-    title: "课后挑战",
-    body: "当周就把新知识用一次，形成自己的理解。",
+    title: "先动手",
+    body: "学生先尝试，不等“全部学会”才开始。",
   },
   {
     step: "03",
-    title: "思维拓展",
-    body: "讨论“还有没有别的解法”，训练开放的思维方式。",
+    title: "遇到问题",
+    body: "真正需要学习的知识和方法开始出现。",
   },
   {
     step: "04",
-    title: "项目开发",
-    body: "围绕真实问题，把想法做成能运行的作品。",
+    title: "关键指导",
+    body: "导师在关键节点提供知识、方法和思路。",
   },
   {
     step: "05",
-    title: "小组研发",
-    body: "分工、协作、互相评审，学会表达与倾听。",
+    title: "再去解决",
+    body: "学生带着新的理解，自己继续尝试。",
   },
   {
     step: "06",
-    title: "成果展示",
-    body: "讲清楚做了什么、为什么这么做，以及学到什么。",
+    title: "达成目标",
+    body: "把问题真正解决，把项目真正完成。",
   },
 ];
 
-const ABILITIES = [
-  { title: "问题拆解", body: "把一个大目标拆成能一步步完成的小任务。" },
-  { title: "持续迭代", body: "接受“第一版一定不完美”，并愿意改到更好。" },
-  { title: "表达与协作", body: "把想法讲清楚，也能听懂并整合别人的意见。" },
-  { title: "AI 素养", body: "理解 AI 能做什么、不能做什么，并学会校验它。" },
+const TRAINING_FORMATS = [
+  "每周小课",
+  "课后实践",
+  "项目研发",
+  "小组协作",
+  "成果展示",
 ];
 
 export default function TrainingPage() {
   return (
     <div>
+      {/* Hero */}
       <section className="border-b border-line bg-surface">
         <div className="container-page py-16 sm:py-20">
           <Badge variant="brand">AI项目制训练班</Badge>
           <h1 className="mt-5 max-w-3xl text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
-            不是学几个工具，
+            真正的学习，
             <br className="hidden sm:block" />
-            而是获得能带走的能力
+            发生在解决问题的时候。
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
-            我们用项目驱动学习：每学一个概念，就立刻用它解决一个真实问题。
-            孩子带走的不是一个做过的作品，而是一套可以反复使用的方法。
+            我们不把知识全部讲完，再让学生开始项目。学生先进入真实任务，在尝试、遇到问题、寻找方法和不断调整的过程中学习。
+          </p>
+          <p className="mt-6 max-w-2xl border-l-4 border-brand-500 pl-4 text-base font-semibold leading-relaxed text-ink sm:text-lg">
+            导师给方向，但不替学生完成。
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/projects" size="lg">
@@ -77,7 +80,7 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      {/* 项目制学习 */}
+      {/* 项目制学习（完整保留） */}
       <section className="border-b border-line bg-surface py-16 sm:py-20">
         <div className="container-page">
           <SectionHeading
@@ -89,81 +92,181 @@ export default function TrainingPage() {
         </div>
       </section>
 
+      {/* 导师如何参与 */}
       <section className="container-page py-16 sm:py-20">
         <SectionHeading
-          eyebrow="学习流程"
-          title="每周一个循环，一步步向上走"
-          description="六个环节形成稳定的节奏：输入 → 练习 → 思考 → 创造 → 协作 → 表达。"
+          eyebrow="导师如何参与"
+          title="老师不是一直站在前面。"
+          description="项目往前走，老师慢慢退后。"
         />
-        <ol className="mt-10 space-y-4">
-          {LADDER.map((item, index) => (
-            <li key={item.step}>
-              <Card className="flex flex-col gap-4 p-6 sm:flex-row sm:items-center">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-accent-500 text-sm font-bold text-white">
-                  {item.step}
-                </span>
-                <div className="sm:w-40 sm:shrink-0">
-                  <h3 className="text-lg font-semibold text-ink">
-                    {item.title}
-                  </h3>
-                </div>
-                <p className="text-sm leading-relaxed text-muted">
-                  {item.body}
-                </p>
-                {index < LADDER.length - 1 ? (
-                  <span className="hidden text-line sm:block" aria-hidden>
-                    ↓
+
+        {/* 桌面端：横向连续流程 01 → 06 */}
+        <div className="relative mt-12 hidden lg:block">
+          <svg
+            viewBox="0 0 1000 36"
+            preserveAspectRatio="none"
+            className="absolute inset-x-0 top-0 h-9 w-full"
+            fill="none"
+            aria-hidden
+          >
+            <defs>
+              <linearGradient id="mentor-line" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#a5b4fc" />
+                <stop offset="100%" stopColor="#67e8f9" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M83 18 H917"
+              stroke="url(#mentor-line)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            <path d="M164 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M330 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M497 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M664 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M830 14.5l5 3.5-5 3.5" stroke="#a5b4fc" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+
+          <ol className="relative grid grid-cols-6">
+            {MENTOR_STEPS.map((step, index) => (
+              <li
+                key={step.step}
+                className="flex flex-col items-center gap-2.5 text-center"
+              >
+                <span className="relative z-20">
+                  <span
+                    className={
+                      index === MENTOR_STEPS.length - 1
+                        ? "flex h-9 w-9 items-center justify-center rounded-full bg-accent-500 text-xs font-bold text-white ring-4 ring-accent-100"
+                        : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-canvas"
+                    }
+                  >
+                    {step.step}
                   </span>
+                  {index === MENTOR_STEPS.length - 1 ? (
+                    <span
+                      aria-hidden
+                      className="absolute -inset-2 rounded-full border border-dashed border-accent-300"
+                    />
+                  ) : null}
+                </span>
+                <h3
+                  className={
+                    index === MENTOR_STEPS.length - 1
+                      ? "text-sm font-semibold text-accent-700"
+                      : "text-sm font-semibold text-ink"
+                  }
+                >
+                  {step.title}
+                </h3>
+                <p className="max-w-[9rem] text-xs leading-relaxed text-muted">
+                  {step.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* 移动端：纵向连续流程 */}
+        <ol className="relative mt-10 flex flex-col gap-6 lg:hidden">
+          {MENTOR_STEPS.map((step, index) => (
+            <li key={step.step} className="relative flex items-start gap-4">
+              <span className="relative z-10 shrink-0">
+                <span
+                  className={
+                    index === MENTOR_STEPS.length - 1
+                      ? "flex h-9 w-9 items-center justify-center rounded-full bg-accent-500 text-xs font-bold text-white ring-4 ring-accent-100"
+                      : "flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-white ring-4 ring-canvas"
+                  }
+                >
+                  {step.step}
+                </span>
+                {index === MENTOR_STEPS.length - 1 ? (
+                  <span
+                    aria-hidden
+                    className="absolute -inset-2 rounded-full border border-dashed border-accent-300"
+                  />
                 ) : null}
-              </Card>
+              </span>
+              <div>
+                <h3
+                  className={
+                    index === MENTOR_STEPS.length - 1
+                      ? "text-base font-semibold text-accent-700"
+                      : "text-base font-semibold text-ink"
+                  }
+                >
+                  {step.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {step.body}
+                </p>
+              </div>
+
+              {index < MENTOR_STEPS.length - 1 ? (
+                <span
+                  aria-hidden
+                  className="absolute left-[17px] top-10 h-[calc(100%-1rem)] w-0.5 rounded-full bg-brand-200"
+                />
+              ) : null}
             </li>
           ))}
         </ol>
+
+        <div className="mt-12 text-center">
+          <p className="text-lg font-medium leading-relaxed text-ink sm:text-xl">
+            知识不是被一次性灌输，
+            <br className="hidden sm:block" />
+            而是在项目真正需要的时候进入。
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-muted">
+            导师提供方向和支持，真正完成项目的人始终是学生自己。
+          </p>
+        </div>
       </section>
 
-      <section className="border-y border-line bg-surface py-16 sm:py-20">
+      {/* 训练方式 */}
+      <section className="border-y border-line bg-surface py-12 sm:py-14">
         <div className="container-page">
-          <SectionHeading
-            eyebrow="可以获得的能力"
-            title="课程结束后，孩子真正带走的是什么"
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {ABILITIES.map((ability) => (
-              <Card key={ability.title} className="p-6">
-                <h3 className="text-lg font-semibold text-ink">
-                  {ability.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {ability.body}
-                </p>
-              </Card>
-            ))}
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold tracking-wide text-brand-600">
+              训练方式
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+              学习、实践和项目不是彼此分开的，而是在整个训练过程中不断交替发生。
+            </p>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm font-medium text-ink-soft sm:text-base">
+              {TRAINING_FORMATS.map((format, index) => (
+                <span key={format} className="flex items-center gap-3">
+                  <span>{format}</span>
+                  {index < TRAINING_FORMATS.length - 1 ? (
+                    <span aria-hidden className="text-brand-300">
+                      ·
+                    </span>
+                  ) : null}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
+      {/* 结尾 */}
       <section className="container-page py-16 sm:py-20">
-        <Card className="bg-ink p-8 text-center sm:p-12">
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">
-            想了解孩子的学习进展？
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-slate-300">
-            每个项目详情页都完整记录了“为什么设计、学到什么、还能怎么扩展”，
-            即使不懂技术，也能看懂孩子的成长。
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+            不是替学生把项目做完，
+            <br className="hidden sm:block" />
+            而是陪他们学会自己把项目做出来。
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <ButtonLink href="/projects" size="lg">
-              从作品开始了解
-            </ButtonLink>
-            <ButtonLink
-              href="/learning-path"
-              variant="secondary"
-              size="lg"
-            >
-              查看学习路径
+            <ButtonLink href="/projects">看看学生做出来的作品 →</ButtonLink>
+            <ButtonLink href="/learning-path" variant="secondary">
+              了解学习路径 →
             </ButtonLink>
           </div>
-        </Card>
+        </div>
       </section>
     </div>
   );
