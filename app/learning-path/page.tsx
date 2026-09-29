@@ -14,29 +14,21 @@ const STAGES = [
     step: "01",
     title: "跟着做",
     subtitle: "先打开可能性",
-    lines: [
-      "接触真正有效的 AI 工具，在实际任务中快速上手。",
-      "不是为了“学会一个软件”，而是开始理解：",
-    ],
+    lines: ["接触真正有效的 AI 工具，在实际任务中快速上手。不是为“学会一个软件”，而是开始理解："],
     highlight: "AI原来可以帮我做到什么？",
   },
   {
     step: "02",
     title: "自己解决",
     subtitle: "从“学工具”变成“找办法”",
-    lines: [
-      "开始面对没有标准答案的问题。",
-      "需要什么，就去寻找什么；不会什么，就去学习什么。",
-    ],
+    lines: ["面对没有标准答案的问题：需要什么就去找，不会什么就去学。"],
     chain: ["有目标", "找方法", "选工具", "解决问题"],
   },
   {
     step: "03",
     title: "独立创造",
     subtitle: "从完成任务，到提出自己的问题",
-    lines: [
-      "开始发现生活、学习和兴趣中的机会，提出自己的想法，组合不同工具，把一个模糊的念头变成真正可以实现的东西。",
-    ],
+    lines: ["发现生活、学习和兴趣中的机会，提出自己的想法，组合不同工具，把模糊的念头变成可以实现的东西。"],
     quote: ["“老师让我做什么？”", "“我想做这个，怎么把它实现？”"],
   },
 ];
@@ -50,33 +42,23 @@ const CREATIVE_STEPS = [
   "产生新的想法",
 ];
 
-const GOAL_STEPS = [
-  "我想解决什么？",
-  "我需要什么能力？",
-  "什么工具可以帮助我？",
-  "如何把它们组合起来？",
-];
-
 const FUTURE_ABILITIES = [
   {
     step: "01",
     title: "快速学习",
     body: "面对不断出现的新 AI 工具，能够迅速理解、判断并上手。",
-    accent: "bg-brand-500",
     number: "text-brand-600",
   },
   {
     step: "02",
     title: "驾驭工具",
     body: "不是被工具牵着走，而是根据自己的目标，判断应该使用什么。",
-    accent: "bg-accent-500",
     number: "text-accent-700",
   },
   {
     step: "03",
     title: "独立创造",
     body: "发现问题，形成自己的想法，并有能力把想法一步步变成现实。",
-    accent: "bg-success",
     number: "text-emerald-700",
   },
 ];
@@ -232,8 +214,8 @@ export default function LearningPathPage() {
         </ol>
       </section>
 
-      {/* 创意思维 */}
-      <section className="border-y border-line bg-surface py-16 sm:py-20">
+      {/* 创意思维 + 最终留下来的能力（页面总结） */}
+      <section className="border-y border-line bg-surface py-12 sm:py-16">
         <div className="container-page">
           <SectionHeading
             eyebrow="创意思维"
@@ -244,7 +226,7 @@ export default function LearningPathPage() {
             我们希望学生逐渐养成一种习惯：看到一个问题时，不只是接受它，而是开始想——“有没有另一种可能？”
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-3">
+          <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-3">
             {CREATIVE_STEPS.map((step, index) => (
               <span key={step} className="flex items-center gap-3">
                 <span className="rounded-full bg-canvas px-3.5 py-1.5 text-xs font-medium text-ink-soft ring-1 ring-inset ring-line sm:text-sm">
@@ -258,59 +240,24 @@ export default function LearningPathPage() {
               </span>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* 工具与目标 */}
-      <section className="container-page py-16 sm:py-20">
-        <SectionHeading
-          eyebrow="工具与目标"
-          title="不是追着工具跑，而是让工具为目标服务。"
-          description="新的 AI 工具会不断出现。学生真正需要形成的能力，不是记住每一个工具的操作方式，而是面对一个新的目标时，能够判断："
-        />
-
-        <ol className="mx-auto mt-10 max-w-xl space-y-2">
-          {GOAL_STEPS.map((question, index) => (
-            <li key={question} className="flex flex-col items-center">
-              <span className="w-full rounded-2xl bg-surface px-5 py-3.5 text-center text-sm font-medium text-ink-soft ring-1 ring-inset ring-line sm:text-base">
-                {question}
-              </span>
-              {index < GOAL_STEPS.length - 1 ? (
-                <span aria-hidden className="py-1 text-brand-300">
-                  ↓
-                </span>
-              ) : null}
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* 未来真正留下来的能力 */}
-      <section className="border-y border-line bg-surface py-16 sm:py-20">
-        <div className="container-page">
-          <SectionHeading
-            eyebrow="真正留下来的能力"
-            title="未来真正留下来的是什么？"
-          />
-
-          <div className="mt-10 grid gap-8 sm:grid-cols-3">
-            {FUTURE_ABILITIES.map((ability) => (
-              <div key={ability.step}>
-                <span
-                  aria-hidden
-                  className={`mb-4 block h-0.5 w-8 rounded-full ${ability.accent}`}
-                />
-                <p className={`text-xs font-bold ${ability.number}`}>
-                  {ability.step}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold text-ink">
-                  {ability.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">
-                  {ability.body}
-                </p>
-              </div>
-            ))}
+          {/* 页面总结：最终留下来的三种能力 */}
+          <div className="mt-10 border-t border-line pt-8">
+            <div className="grid gap-6 sm:grid-cols-3">
+              {FUTURE_ABILITIES.map((ability) => (
+                <div key={ability.step}>
+                  <p className={`text-xs font-bold ${ability.number}`}>
+                    {ability.step}
+                  </p>
+                  <h3 className="mt-2 text-lg font-semibold text-ink">
+                    {ability.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {ability.body}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
