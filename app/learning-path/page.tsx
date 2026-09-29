@@ -1,117 +1,340 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { abilityLabel } from "@/lib/constants";
-import { getPublishedProjects, type Project } from "@/lib/projects";
-import { cn, displayAuthor, formatDateShort } from "@/lib/utils";
-
-export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "学习路径",
   description:
-    "把作品横向聚合起来，看清知识、能力与作品之间的关联。",
+    "工具会变，能力留下——学生如何从跟着做，走向独立解决问题与独立创造。",
 };
 
-type View = "knowledge" | "ability";
+const STAGES = [
+  {
+    step: "01",
+    title: "跟着做",
+    subtitle: "先打开可能性",
+    lines: [
+      "接触真正有效的 AI 工具，在实际任务中快速上手。",
+      "不是为了“学会一个软件”，而是开始理解：",
+    ],
+    highlight: "AI原来可以帮我做到什么？",
+  },
+  {
+    step: "02",
+    title: "自己解决",
+    subtitle: "从“学工具”变成“找办法”",
+    lines: [
+      "开始面对没有标准答案的问题。",
+      "需要什么，就去寻找什么；不会什么，就去学习什么。",
+    ],
+    chain: ["有目标", "找方法", "选工具", "解决问题"],
+  },
+  {
+    step: "03",
+    title: "独立创造",
+    subtitle: "从完成任务，到提出自己的问题",
+    lines: [
+      "开始发现生活、学习和兴趣中的机会，提出自己的想法，组合不同工具，把一个模糊的念头变成真正可以实现的东西。",
+    ],
+    quote: ["“老师让我做什么？”", "“我想做这个，怎么把它实现？”"],
+  },
+];
 
-function groupBy(
-  projects: Project[],
-  pick: (project: Project) => string[],
-): { key: string; items: Project[] }[] {
-  const map = new Map<string, Project[]>();
-  for (const project of projects) {
-    for (const key of pick(project)) {
-      const list = map.get(key) ?? [];
-      list.push(project);
-      map.set(key, list);
-    }
-  }
-  return [...map.entries()]
-    .map(([key, items]) => ({ key, items }))
-    .sort((a, b) => b.items.length - a.items.length);
-}
+const CREATIVE_STEPS = [
+  "发现问题",
+  "提出问题",
+  "寻找可能",
+  "调动工具",
+  "动手验证",
+  "产生新的想法",
+];
 
-export default async function LearningPathPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ view?: string }>;
-}) {
-  const resolved = await searchParams;
-  const view: View = resolved.view === "ability" ? "ability" : "knowledge";
+const GOAL_STEPS = [
+  "我想解决什么？",
+  "我需要什么能力？",
+  "什么工具可以帮助我？",
+  "如何把它们组合起来？",
+];
 
-  const projects = await getPublishedProjects();
-  const groups =
-    view === "knowledge"
-      ? groupBy(projects, (project) => project.tags)
-      : groupBy(projects, (project) => project.abilityTags);
+const FUTURE_ABILITIES = [
+  {
+    step: "01",
+    title: "快速学习",
+    body: "面对不断出现的新 AI 工具，能够迅速理解、判断并上手。",
+    accent: "bg-brand-500",
+    number: "text-brand-600",
+  },
+  {
+    step: "02",
+    title: "驾驭工具",
+    body: "不是被工具牵着走，而是根据自己的目标，判断应该使用什么。",
+    accent: "bg-accent-500",
+    number: "text-accent-700",
+  },
+  {
+    step: "03",
+    title: "独立创造",
+    body: "发现问题，形成自己的想法，并有能力把想法一步步变成现实。",
+    accent: "bg-success",
+    number: "text-emerald-700",
+  },
+];
 
+export default function LearningPathPage() {
   return (
-    <div className="container-page py-12 sm:py-16">
-      <SectionHeading
-        eyebrow="学习路径"
-        title="知识、能力与作品，在这里连成一张网"
-        description="换一个角度，就能看到同一批作品背后的知识结构与能力成长。"
-      />
-
-      <div className="mt-8 inline-flex rounded-full bg-surface p-1 ring-1 ring-inset ring-line">
-        {[
-          { value: "knowledge", label: "按知识 / 标签" },
-          { value: "ability", label: "按能力维度" },
-        ].map((tab) => (
-          <Link
-            key={tab.value}
-            href={`/learning-path?view=${tab.value}`}
-            className={cn(
-              "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
-              view === tab.value
-                ? "bg-brand-600 text-white"
-                : "text-ink-soft hover:text-ink",
-            )}
-          >
-            {tab.label}
-          </Link>
-        ))}
-      </div>
-
-      <div className="mt-8 space-y-6">
-        {groups.map((group) => (
-          <Card key={group.key} className="p-6">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="text-lg font-semibold text-ink">
-                {view === "ability" ? abilityLabel(group.key) : group.key}
-              </h2>
-              <Badge variant={view === "ability" ? "accent" : "brand"}>
-                {group.items.length} 个项目
-              </Badge>
+    <div>
+      {/* Hero */}
+      <section className="relative overflow-hidden border-b border-line bg-surface">
+        <div className="bg-grid absolute inset-0 opacity-60" aria-hidden />
+        <div className="container-page relative py-16 sm:py-24">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+            <div>
+              <Badge variant="brand">学习路径</Badge>
+              <h1 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-5xl">
+                工具会变，
+                <span className="text-gradient">能力</span>留下。
+              </h1>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+                AI时代，重要的不是记住多少工具，而是能快速理解新工具，让它服务于自己的目标，并最终把想法变成现实。
+              </p>
             </div>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {group.items.map((project) => (
-                <li key={project.id}>
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="block rounded-xl bg-canvas p-4 ring-1 ring-inset ring-line transition-colors hover:bg-brand-50"
-                  >
-                    <p className="font-medium text-ink">{project.title}</p>
-                    <p className="mt-1 text-xs text-muted">
-                      {displayAuthor(project)} ·{" "}
-                      {formatDateShort(project.createdAt)}
-                    </p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        ))}
 
-        {groups.length === 0 ? (
-          <Card className="p-12 text-center text-sm text-muted">
-            还没有可聚合的项目数据。
-          </Card>
-        ) : null}
-      </div>
+            {/* 轻量抽象视觉：工具 → 能力 → 创造 */}
+            <div className="relative hidden lg:block" aria-hidden>
+              <svg viewBox="0 0 360 200" className="h-full w-full" fill="none">
+                <circle cx="292" cy="62" r="72" fill="#c7d2fe" opacity="0.25" />
+                <path
+                  d="M48 176 C120 168 150 130 190 100 C232 68 270 56 316 44"
+                  stroke="#c7d2fe"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M107 149l5 3-5 3"
+                  stroke="#a5b4fc"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M247 69l5 3-5 3"
+                  stroke="#a5b4fc"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <circle cx="190" cy="100" r="15" fill="#818cf8" opacity="0.10" />
+                <circle cx="316" cy="44" r="19" fill="#06b6d4" opacity="0.10" />
+                <circle cx="316" cy="44" r="24" stroke="#c7d2fe" strokeWidth="1" strokeDasharray="2 6" />
+                <circle cx="48" cy="176" r="5" fill="#eef2ff" stroke="#a5b4fc" strokeWidth="1.5" />
+                <circle cx="190" cy="100" r="8" fill="#e0e7ff" stroke="#818cf8" strokeWidth="1.5" />
+                <circle cx="316" cy="44" r="12" fill="#cffafe" stroke="#06b6d4" strokeWidth="1.5" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 核心成长路径 */}
+      <section className="container-page py-16 sm:py-20">
+        <SectionHeading
+          eyebrow="核心成长路径"
+          title="从跟着做，到独立创造"
+        />
+
+        <ol className="relative mt-12 space-y-10 lg:space-y-14">
+          {STAGES.map((stage, index) => (
+            <li key={stage.step} className="relative flex gap-6">
+              {/* 成长连接线：连到下一个阶段 */}
+              {index < STAGES.length - 1 ? (
+                <span
+                  aria-hidden
+                  className="absolute left-[27px] top-14 -bottom-10 w-0.5 rounded-full bg-brand-200 lg:-bottom-14"
+                />
+              ) : null}
+
+              <div className="relative z-10 shrink-0">
+                <span
+                  className={
+                    index === STAGES.length - 1
+                      ? "flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-base font-bold text-white ring-8 ring-brand-100"
+                      : "flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-base font-bold text-white ring-8 ring-canvas"
+                  }
+                >
+                  {stage.step}
+                </span>
+                {index === STAGES.length - 1 ? (
+                  <span
+                    aria-hidden
+                    className="absolute -inset-1.5 rounded-full border border-dashed border-brand-300"
+                  />
+                ) : null}
+              </div>
+
+              <div
+                className={
+                  index === STAGES.length - 1
+                    ? "flex-1 rounded-2xl bg-brand-50/50 p-5 ring-1 ring-inset ring-brand-100 sm:p-6"
+                    : "flex-1 pt-1"
+                }
+              >
+                <p className="text-xs font-semibold tracking-wide text-brand-600">
+                  {stage.subtitle}
+                </p>
+                <h3 className="mt-1 text-xl font-semibold text-ink sm:text-2xl">
+                  {stage.title}
+                </h3>
+
+                <div className="mt-3 space-y-1.5 text-sm leading-relaxed text-muted sm:text-base">
+                  {stage.lines.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                </div>
+
+                {stage.highlight ? (
+                  <p className="mt-3 text-base font-medium text-ink sm:text-lg">
+                    {stage.highlight}
+                  </p>
+                ) : null}
+
+                {stage.chain ? (
+                  <div className="mt-4 flex flex-wrap items-center gap-2">
+                    {stage.chain.map((item, chainIndex) => (
+                      <span key={item} className="flex items-center gap-2">
+                        <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-medium text-brand-700 sm:text-sm">
+                          {item}
+                        </span>
+                        {chainIndex < stage.chain!.length - 1 ? (
+                          <span aria-hidden className="text-brand-300">
+                            →
+                          </span>
+                        ) : null}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+
+                {stage.quote ? (
+                  <div className="mt-5 rounded-xl bg-surface px-4 py-4 ring-1 ring-inset ring-line">
+                    <p className="text-sm text-muted">{stage.quote[0]}</p>
+                    <p aria-hidden className="mt-2 text-brand-300">
+                      ↓
+                    </p>
+                    <p className="mt-2 text-base font-semibold text-brand-700 sm:text-lg">
+                      {stage.quote[1]}
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* 创意思维 */}
+      <section className="border-y border-line bg-surface py-16 sm:py-20">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="创意思维"
+            title="创造力，不只是“有一个好点子”。"
+            description="真正的创造，往往从留意身边的问题开始。"
+          />
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+            我们希望学生逐渐养成一种习惯：看到一个问题时，不只是接受它，而是开始想——“有没有另一种可能？”
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-3">
+            {CREATIVE_STEPS.map((step, index) => (
+              <span key={step} className="flex items-center gap-3">
+                <span className="rounded-full bg-canvas px-3.5 py-1.5 text-xs font-medium text-ink-soft ring-1 ring-inset ring-line sm:text-sm">
+                  {step}
+                </span>
+                {index < CREATIVE_STEPS.length - 1 ? (
+                  <span aria-hidden className="text-brand-300">
+                    →
+                  </span>
+                ) : null}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 工具与目标 */}
+      <section className="container-page py-16 sm:py-20">
+        <SectionHeading
+          eyebrow="工具与目标"
+          title="不是追着工具跑，而是让工具为目标服务。"
+          description="新的 AI 工具会不断出现。学生真正需要形成的能力，不是记住每一个工具的操作方式，而是面对一个新的目标时，能够判断："
+        />
+
+        <ol className="mx-auto mt-10 max-w-xl space-y-2">
+          {GOAL_STEPS.map((question, index) => (
+            <li key={question} className="flex flex-col items-center">
+              <span className="w-full rounded-2xl bg-surface px-5 py-3.5 text-center text-sm font-medium text-ink-soft ring-1 ring-inset ring-line sm:text-base">
+                {question}
+              </span>
+              {index < GOAL_STEPS.length - 1 ? (
+                <span aria-hidden className="py-1 text-brand-300">
+                  ↓
+                </span>
+              ) : null}
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* 未来真正留下来的能力 */}
+      <section className="border-y border-line bg-surface py-16 sm:py-20">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="真正留下来的能力"
+            title="未来真正留下来的是什么？"
+          />
+
+          <div className="mt-10 grid gap-8 sm:grid-cols-3">
+            {FUTURE_ABILITIES.map((ability) => (
+              <div key={ability.step}>
+                <span
+                  aria-hidden
+                  className={`mb-4 block h-0.5 w-8 rounded-full ${ability.accent}`}
+                />
+                <p className={`text-xs font-bold ${ability.number}`}>
+                  {ability.step}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold text-ink">
+                  {ability.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {ability.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 结尾 */}
+      <section className="container-page py-16 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+            今天学会的工具可能会过时，
+            <br className="hidden sm:block" />
+            但学习、判断和创造的能力会留下。
+          </p>
+          <p className="mt-6 text-sm leading-relaxed text-muted sm:text-base">
+            从“我会不会用这个工具”，
+            <br className="hidden sm:block" />
+            到“我想做什么，以及怎样把它实现”。
+          </p>
+          <div className="mt-8">
+            <ButtonLink href="/training" variant="secondary">
+              了解我们如何进行项目制训练 →
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
