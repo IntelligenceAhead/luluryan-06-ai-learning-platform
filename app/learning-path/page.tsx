@@ -4,7 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "学习路径",
+  title: "AI学习路径",
   description:
     "工具会变，能力留下——学生如何从跟着做，走向独立解决问题与独立创造。",
 };
@@ -72,7 +72,7 @@ export default function LearningPathPage() {
         <div className="container-page relative py-16 sm:py-24">
           <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <Badge variant="brand">学习路径</Badge>
+              <Badge variant="brand">AI学习路径</Badge>
               <h1 className="mt-5 text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-5xl">
                 工具会变，
                 <span className="text-gradient">能力</span>留下。

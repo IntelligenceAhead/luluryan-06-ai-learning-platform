@@ -5,7 +5,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "AI项目制训练班",
+  title: "项目制训练班",
   description:
     "导师给方向，但不替学生完成——通过项目制训练，让学生真正学会解决问题并完成项目。",
 };
@@ -57,7 +57,7 @@ export default function TrainingPage() {
       {/* Hero */}
       <section className="border-b border-line bg-surface">
         <div className="container-page py-16 sm:py-20">
-          <Badge variant="brand">AI项目制训练班</Badge>
+          <Badge variant="brand">项目制训练班</Badge>
           <h1 className="mt-5 max-w-3xl text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
             真正的学习，
             <br className="hidden sm:block" />
@@ -71,7 +71,7 @@ export default function TrainingPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/projects" size="lg">
-              看看学生作品
+              看看学生AI作品
             </ButtonLink>
             <ButtonLink href="/message-board" variant="secondary" size="lg">
               咨询与留言
@@ -263,7 +263,7 @@ export default function TrainingPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <ButtonLink href="/projects">看看学生做出来的作品 →</ButtonLink>
             <ButtonLink href="/learning-path" variant="secondary">
-              了解学习路径 →
+              了解AI学习路径 →
             </ButtonLink>
           </div>
         </div>

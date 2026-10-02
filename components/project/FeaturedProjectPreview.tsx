@@ -6,7 +6,7 @@ import { categoryLabel, statusLabel } from "@/lib/constants";
 import { displayAuthor, formatCount, projectImages } from "@/lib/utils";
 import type { Project } from "@/lib/projects";
 
-/** Hero 右侧的精选项目预览：第一屏就能看到真实学生作品。 */
+/** Hero 右侧的精选项目预览：第一屏就能看到真实学生AI作品。 */
 export function FeaturedProjectPreview({ project }: { project: Project }) {
   const { cover } = projectImages(project);
 

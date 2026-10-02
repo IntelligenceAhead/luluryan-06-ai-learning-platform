@@ -214,11 +214,11 @@ export default async function ProjectDetailPage({
               想看懂更多这样的项目？
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-muted">
-              到学习路径看看知识如何串联起来，也欢迎留下你的鼓励。
+              到AI学习路径看看知识如何串联起来，也欢迎留下你的鼓励。
             </p>
             <div className="mt-4 flex flex-col gap-2">
               <ButtonLink href="/learning-path" size="sm">
-                看学习路径
+                看AI学习路径
               </ButtonLink>
               <ButtonLink
                 href="/projects"

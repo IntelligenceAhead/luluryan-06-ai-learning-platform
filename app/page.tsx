@@ -69,7 +69,7 @@ export default async function HomePage() {
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <ButtonLink href="/projects" size="lg">
-                  浏览学生作品
+                  浏览学生AI作品
                 </ButtonLink>
                 <ButtonLink href="/training" variant="secondary" size="lg">
                   了解训练班
@@ -192,7 +192,7 @@ export default async function HomePage() {
         {/* 上半部分：左侧成长图片 / 右侧文字（与创新模块形成交错布局） */}
         <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
           <div className="lg:order-2">
-            <SectionHeading eyebrow="AI项目制训练班" title="会用AI，只是开始。" />
+            <SectionHeading eyebrow="项目制训练班" title="会用AI，只是开始。" />
             <p className="mt-3 max-w-2xl text-base font-medium text-ink-soft sm:text-lg">
               真正的目标，是越来越能自己把想法做出来。
             </p>
@@ -308,7 +308,7 @@ export default async function HomePage() {
 
         {/* CTA */}
         <div className="mt-6 text-center">
-          <ButtonLink href="/training">了解AI项目制训练班 →</ButtonLink>
+          <ButtonLink href="/training">了解项目制训练班 →</ButtonLink>
         </div>
       </section>
 

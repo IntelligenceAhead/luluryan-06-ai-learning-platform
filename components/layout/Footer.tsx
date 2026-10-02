@@ -61,7 +61,7 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="container-page flex flex-col gap-2 py-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {SITE.name}</p>
-          <p>仅展示学习过程与学生作品，不公开任何学生真实姓名与联系方式。</p>
+          <p>仅展示学习过程与学生AI作品，不公开任何学生真实姓名与联系方式。</p>
         </div>
       </div>
     </footer>

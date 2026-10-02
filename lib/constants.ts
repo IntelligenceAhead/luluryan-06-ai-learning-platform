@@ -46,12 +46,12 @@ export const SITE = {
   shortName: "项目制学习",
   tagline: "这里展示的不只是学生做出来的东西，而是他们如何学习、思考与成长。",
   description:
-    "把学生作品还原成学习故事：项目背后的学习内容、AI 知识与能力成长，让家长也看得懂。",
+    "把学生AI作品还原成学习故事：项目背后的学习内容、AI 知识与能力成长，让家长也看得懂。",
 } as const;
 
 export const NAV_ITEMS = [
-  { href: "/projects", label: "学生作品" },
-  { href: "/learning-path", label: "学习路径" },
-  { href: "/training", label: "AI项目制训练班" },
+  { href: "/projects", label: "学生AI作品" },
+  { href: "/learning-path", label: "AI学习路径" },
+  { href: "/training", label: "项目制训练班" },
   { href: "/message-board", label: "留言板" },
 ] as const;

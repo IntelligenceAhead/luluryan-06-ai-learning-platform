@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "学生作品",
+  title: "学生AI作品",
   description: "浏览学生们的 AI 项目作品，按分类、状态与喜欢数探索。",
 };
 
@@ -89,7 +89,7 @@ export default async function ProjectsPage({
   return (
     <div className="container-page py-12 sm:py-16">
       <SectionHeading
-        eyebrow="学生作品"
+        eyebrow="学生AI作品"
         title="作品墙"
         description="每个项目背后，都有一段真实的学习过程。点击卡片查看完整故事。"
       />
