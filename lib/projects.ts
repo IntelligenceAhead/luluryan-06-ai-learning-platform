@@ -1,5 +1,6 @@
 import type { Project as ProjectRecord } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { STATIC_PROJECTS } from "@/lib/static-projects";
 import type { Category, ProjectStatus } from "@/lib/constants";
 
 export type Project = Omit<
@@ -46,11 +47,27 @@ export type ProjectFilter = {
   sort?: "latest" | "popular";
 };
 
+/** 与数据库查询一致的排序，保证“数据库项目 + 静态项目”混排结果稳定。 */
+function sortProjects(
+  projects: Project[],
+  sort: NonNullable<ProjectFilter["sort"]>,
+): Project[] {
+  return [...projects].sort((a, b) => {
+    if (sort === "popular") {
+      if (b.voteCount !== a.voteCount) return b.voteCount - a.voteCount;
+    } else if (a.isFeatured !== b.isFeatured) {
+      return Number(b.isFeatured) - Number(a.isFeatured);
+    }
+    return b.createdAt.getTime() - a.createdAt.getTime();
+  });
+}
+
 export async function getPublishedProjects(
   filter: ProjectFilter = {},
 ): Promise<Project[]> {
   const { category = "all", status = "all", sort = "latest" } = filter;
 
+  let fromDb: Project[] = [];
   try {
     const records = await prisma.project.findMany({
       where: {
@@ -64,33 +81,55 @@ export async function getPublishedProjects(
           : [{ isFeatured: "desc" }, { createdAt: "desc" }],
     });
 
-    return records.map(toProject);
+    fromDb = records.map(toProject);
   } catch {
-    return [];
+    fromDb = [];
   }
+
+  const seen = new Set(fromDb.map((project) => project.slug));
+  const fallbacks = STATIC_PROJECTS.filter(
+    (project) =>
+      project.isPublished &&
+      !seen.has(project.slug) &&
+      (category === "all" || project.category === category) &&
+      (status === "all" || project.status === status),
+  );
+
+  return sortProjects([...fromDb, ...fallbacks], sort);
 }
 
 export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
+  let fromDb: Project[] = [];
   try {
     const records = await prisma.project.findMany({
       where: { isPublished: true, isFeatured: true },
       orderBy: [{ voteCount: "desc" }, { createdAt: "desc" }],
       take: limit,
     });
-    return records.map(toProject);
+    fromDb = records.map(toProject);
   } catch {
-    return [];
+    fromDb = [];
   }
+
+  const seen = new Set(fromDb.map((project) => project.slug));
+  const fallbacks = STATIC_PROJECTS.filter(
+    (project) =>
+      project.isPublished && project.isFeatured && !seen.has(project.slug),
+  );
+
+  return sortProjects([...fromDb, ...fallbacks], "popular").slice(0, limit);
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
   try {
     const record = await prisma.project.findUnique({ where: { slug } });
-    if (!record || !record.isPublished) return null;
-    return toProject(record);
+    if (record) return record.isPublished ? toProject(record) : null;
   } catch {
-    return null;
+    // 无数据库环境（如生产静态部署）：回退到静态项目数据
   }
+
+  const fallback = STATIC_PROJECTS.find((project) => project.slug === slug);
+  return fallback && fallback.isPublished ? fallback : null;
 }
 
 export async function getAllTags(): Promise<{ tag: string; count: number }[]> {
