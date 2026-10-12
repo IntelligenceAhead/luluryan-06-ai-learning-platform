@@ -6,7 +6,13 @@ import { categoryLabel, statusLabel } from "@/lib/constants";
 import { formatDateShort, projectImages } from "@/lib/utils";
 import type { Project } from "@/lib/projects";
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  coverFramed = false,
+}: {
+  project: Project;
+  coverFramed?: boolean;
+}) {
   const { cover } = projectImages(project);
 
   return (
@@ -14,12 +20,25 @@ export function ProjectCard({ project }: { project: Project }) {
       href={`/projects/${project.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-2xl bg-surface ring-1 ring-inset ring-line shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-brand-200"
     >
-      <ProjectCover
-        src={cover}
-        title={project.title}
-        category={project.category}
-        className="aspect-[16/10]"
-      />
+      {coverFramed ? (
+        <div className="flex aspect-[16/10] items-center justify-center">
+          <div className="aspect-[1.86] w-[87%] overflow-hidden rounded-[12px] border-[3px] border-slate-600">
+            <ProjectCover
+              src={cover}
+              title={project.title}
+              category={project.category}
+              className="h-full w-full"
+            />
+          </div>
+        </div>
+      ) : (
+        <ProjectCover
+          src={cover}
+          title={project.title}
+          category={project.category}
+          className="aspect-[16/10]"
+        />
+      )}
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center justify-between gap-3">
