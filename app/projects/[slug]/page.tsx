@@ -59,6 +59,7 @@ export default async function ProjectDetailPage({
   if (!project) notFound();
 
   const { cover, gallery } = projectImages(project);
+  const isConcept = project.status === "concept";
 
   return (
     <div className="container-page py-10 sm:py-14">
@@ -77,7 +78,7 @@ export default async function ProjectDetailPage({
             <Badge
               variant={project.status === "completed" ? "success" : "accent"}
             >
-              {statusLabel(project.status)}
+              {isConcept ? "创意示例" : statusLabel(project.status)}
             </Badge>
             {project.isFeatured ? <Badge variant="warm">精选</Badge> : null}
           </div>
@@ -89,13 +90,19 @@ export default async function ProjectDetailPage({
             {project.summary}
           </p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
-            <span>作者：{displayAuthor(project)}</span>
-            <span aria-hidden>·</span>
-            <span>{formatDate(project.createdAt)}</span>
-          </div>
+          {isConcept ? (
+            <p className="mt-5 text-sm leading-relaxed text-muted">
+              本页为创意示例，沿用原始构想说明和示意图，不代表已完成作品或真实学生的创作经历。
+            </p>
+          ) : (
+            <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted">
+              <span>作者：{displayAuthor(project)}</span>
+              <span aria-hidden>·</span>
+              <span>{formatDate(project.createdAt)}</span>
+            </div>
+          )}
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          {!isConcept && <div className="mt-6 flex flex-wrap gap-3">
             {project.demoUrl ? (
               <a
                 href={project.demoUrl}
@@ -110,10 +117,20 @@ export default async function ProjectDetailPage({
                 演示链接即将开放
               </span>
             )}
+            {project.sourceUrl && (
+              <a
+                href={project.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-medium text-ink-soft ring-1 ring-inset ring-line transition-colors hover:bg-slate-50 hover:text-ink"
+              >
+                查看源代码 ↗
+              </a>
+            )}
             <ButtonLink href="/message-board" variant="secondary">
               给这个项目留言
             </ButtonLink>
-          </div>
+          </div>}
         </div>
 
         {/* 大型截图 / Demo 预览区域 */}
@@ -126,29 +143,36 @@ export default async function ProjectDetailPage({
           />
         </div>
 
-        <div className="mt-4 flex items-center gap-5 text-sm text-ink-soft">
-          <span className="inline-flex items-center gap-1.5" title="浏览量">
-            <EyeIcon />
-            {formatCount(project.viewCount)} 次浏览
-          </span>
-          <span
-            className="inline-flex items-center gap-1.5 text-rose-500"
-            title="喜欢"
-          >
-            <HeartIcon />
-            {formatCount(project.voteCount)} 人喜欢
-          </span>
-        </div>
+        {!isConcept && (
+          <div className="mt-4 flex items-center gap-5 text-sm text-ink-soft">
+            <span className="inline-flex items-center gap-1.5" title="浏览量">
+              <EyeIcon />
+              {formatCount(project.viewCount)} 次浏览
+            </span>
+            <span
+              className="inline-flex items-center gap-1.5 text-rose-500"
+              title="喜欢"
+            >
+              <HeartIcon />
+              {formatCount(project.voteCount)} 人喜欢
+            </span>
+          </div>
+        )}
       </header>
 
       {/* 项目背后的学习 */}
       <div className="mt-12 grid gap-10 lg:grid-cols-[1.6fr_1fr]">
         <div className="space-y-10">
-          <LearningBlock title="为什么设计这个项目" eyebrow="导师视角">
-            <p>{project.whyDesigned}</p>
-          </LearningBlock>
+          {!isConcept && (
+            <LearningBlock title="为什么设计这个项目" eyebrow="导师视角">
+              <p>{project.whyDesigned}</p>
+            </LearningBlock>
+          )}
 
-          <LearningBlock title="项目的逻辑基础">
+          <LearningBlock
+            title="项目的逻辑基础"
+            eyebrow={isConcept ? "原始构想说明" : undefined}
+          >
             <p>{project.logicFoundation}</p>
           </LearningBlock>
 
@@ -165,21 +189,25 @@ export default async function ProjectDetailPage({
             </ul>
           </LearningBlock>
 
-          <LearningBlock title="完成这个项目学到了什么">
-            <p>{project.learningOutcomes}</p>
-          </LearningBlock>
+          {!isConcept && (
+            <LearningBlock title="完成这个项目学到了什么">
+              <p>{project.learningOutcomes}</p>
+            </LearningBlock>
+          )}
 
-          <blockquote className="rounded-2xl border-l-4 border-brand-500 bg-brand-50/60 p-6">
-            <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
-              学生原话 · 原样保留，不作改写
-            </p>
-            <p className="mt-3 text-base leading-relaxed text-ink">
-              “{project.studentQuote}”
-            </p>
-            <footer className="mt-3 text-sm text-muted">
-              —— {project.studentQuoteAuthor ?? displayAuthor(project)}
-            </footer>
-          </blockquote>
+          {!isConcept && (
+            <blockquote className="rounded-2xl border-l-4 border-brand-500 bg-brand-50/60 p-6">
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand-600">
+                学生原话 · 原样保留，不作改写
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-ink">
+                “{project.studentQuote}”
+              </p>
+              <footer className="mt-3 text-sm text-muted">
+                —— {project.studentQuoteAuthor ?? displayAuthor(project)}
+              </footer>
+            </blockquote>
+          )}
 
           <LearningBlock title="项目还能如何扩展">
             <p>{project.futureExtensions}</p>
@@ -188,7 +216,9 @@ export default async function ProjectDetailPage({
 
         <aside className="space-y-6">
           <Card className="p-6">
-            <p className="text-xs font-semibold text-muted">能力标签</p>
+            <p className="text-xs font-semibold text-muted">
+              {isConcept ? "可探索的能力方向" : "能力标签"}
+            </p>
             <div className="mt-2 flex flex-wrap gap-1.5">
               {project.abilityTags.map((ability) => (
                 <Badge key={ability} variant="accent">

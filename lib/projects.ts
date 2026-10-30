@@ -1,7 +1,10 @@
 import type { Project as ProjectRecord } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { STATIC_PROJECTS } from "@/lib/static-projects";
+import { CONCEPT_PROJECTS } from "@/lib/concept-projects";
 import type { Category, ProjectStatus } from "@/lib/constants";
+
+const CONCEPT_SLUGS = CONCEPT_PROJECTS.map((project) => project.slug);
 
 export type Project = Omit<
   ProjectRecord,
@@ -12,6 +15,7 @@ export type Project = Omit<
   abilityTags: string[];
   relatedProjectIds: string[];
   screenshots: string[];
+  sourceUrl?: string;
 };
 
 export function parseList(value: string | null | undefined): string[] {
@@ -55,7 +59,9 @@ function sortProjects(
   return [...projects].sort((a, b) => {
     if (sort === "popular") {
       if (b.voteCount !== a.voteCount) return b.voteCount - a.voteCount;
-    } else if (a.isFeatured !== b.isFeatured) {
+    }
+    // 喜欢数相同时仍将精选作品放在前面，保留已有作品的相对顺序。
+    if (a.isFeatured !== b.isFeatured) {
       return Number(b.isFeatured) - Number(a.isFeatured);
     }
     return b.createdAt.getTime() - a.createdAt.getTime();
@@ -72,6 +78,8 @@ export async function getPublishedProjects(
     const records = await prisma.project.findMany({
       where: {
         isPublished: true,
+        // 早期示例单独展示，不参与真实作品的列表筛选和排序。
+        slug: { notIn: CONCEPT_SLUGS },
         ...(category !== "all" ? { category } : {}),
         ...(status !== "all" ? { status } : {}),
       },
@@ -102,7 +110,11 @@ export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
   let fromDb: Project[] = [];
   try {
     const records = await prisma.project.findMany({
-      where: { isPublished: true, isFeatured: true },
+      where: {
+        isPublished: true,
+        isFeatured: true,
+        slug: { notIn: CONCEPT_SLUGS },
+      },
       orderBy: [{ voteCount: "desc" }, { createdAt: "desc" }],
       take: limit,
     });
@@ -121,6 +133,8 @@ export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
+  const concept = CONCEPT_PROJECTS.find((project) => project.slug === slug);
+  if (concept) return concept.isPublished ? concept : null;
   try {
     const record = await prisma.project.findUnique({ where: { slug } });
     if (record) return record.isPublished ? toProject(record) : null;

@@ -1,9 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/project/ProjectCard";
+import { ProjectCover } from "@/components/project/ProjectCover";
 import { Card } from "@/components/ui/Card";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { CATEGORIES, STATUSES } from "@/lib/constants";
+import { CONCEPT_PROJECTS } from "@/lib/concept-projects";
 import { getPublishedProjects, type ProjectFilter } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
@@ -74,7 +76,9 @@ export default async function ProjectsPage({
   const resolved = await searchParams;
   const params: SearchParams = {
     category: resolved.category ?? "all",
-    status: resolved.status ?? "all",
+    status: STATUSES.some((item) => item.value === resolved.status)
+      ? resolved.status
+      : "all",
     sort: resolved.sort === "popular" ? "popular" : "latest",
   };
 
@@ -88,6 +92,7 @@ export default async function ProjectsPage({
 
   return (
     <div className="container-page py-12 sm:py-16">
+      <section id="real-projects" aria-label="真实作品">
       <SectionHeading
         eyebrow="学生AI作品"
         title="作品墙"
@@ -147,6 +152,37 @@ export default async function ProjectsPage({
           这个筛选条件下还没有项目，换个条件看看吧。
         </Card>
       )}
+      </section>
+
+      <section id="concept-projects" aria-label="创意示例" className="mt-16 border-t border-line pt-12 sm:mt-20 sm:pt-16">
+        <SectionHeading
+          title="还有很多想法，等着被实现"
+          description="从生活中的小麻烦，到有趣的技术挑战。下一个作品，也许就从这里开始。"
+        />
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {CONCEPT_PROJECTS.filter((project) => project.isPublished).map((project) => (
+            <Link
+              key={project.slug}
+              href={`/projects/${project.slug}`}
+              className="overflow-hidden rounded-2xl border border-line bg-surface transition-colors hover:border-brand-200"
+            >
+              <ProjectCover
+                src={project.coverImage}
+                title={project.title}
+                category={project.category}
+                className="aspect-[16/10]"
+              />
+              <div className="p-4">
+                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-muted">
+                  创意示例
+                </span>
+                <h3 className="mt-3 text-base font-semibold text-ink">{project.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{project.summary}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
