@@ -53,5 +53,5 @@ export const NAV_ITEMS = [
   { href: "/projects", label: "学生AI作品" },
   { href: "/learning-path", label: "AI学习路径" },
   { href: "/training", label: "项目制训练班" },
-  { href: "/message-board", label: "留言板" },
+  { href: "/projects#feedback", label: "交流与反馈" },
 ] as const;

@@ -127,8 +127,8 @@ export default async function ProjectDetailPage({
                 查看源代码 ↗
               </a>
             )}
-            <ButtonLink href="/message-board" variant="secondary">
-              给这个项目留言
+            <ButtonLink href="/projects#feedback" variant="secondary">
+              交流与反馈
             </ButtonLink>
           </div>}
         </div>

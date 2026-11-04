@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import type { Metadata } from "next";
+import { FeedbackSection } from "@/components/message-board/FeedbackSection";
 import { ProjectCard } from "@/components/project/ProjectCard";
 import { ProjectCover } from "@/components/project/ProjectCover";
 import { Card } from "@/components/ui/Card";
@@ -183,6 +185,10 @@ export default async function ProjectsPage({
           ))}
         </div>
       </section>
+
+      <Suspense fallback={<p className="mt-16 text-sm text-muted">正在加载交流与反馈…</p>}>
+        <FeedbackSection />
+      </Suspense>
     </div>
   );
 }

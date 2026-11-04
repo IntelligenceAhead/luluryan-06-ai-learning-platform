@@ -389,12 +389,12 @@ export default async function HomePage() {
             <SectionHeading
               eyebrow="参与"
               title="喜欢一个作品，就留下你的鼓励"
-              description="看到打动你的项目，点个喜欢，或者到留言板写句话，都是对同学们最好的认可。"
+              description="看到打动你的项目，点个喜欢，或者到交流与反馈区域看看，都是对同学们的支持。"
             />
             <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/projects">去看看作品</ButtonLink>
-              <ButtonLink href="/message-board" variant="secondary">
-                去留言板
+              <ButtonLink href="/projects#feedback" variant="secondary">
+                交流与反馈
               </ButtonLink>
             </div>
           </div>

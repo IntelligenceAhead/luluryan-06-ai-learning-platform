@@ -6,6 +6,14 @@ import { usePathname } from "next/navigation";
 import { NAV_ITEMS, SITE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
+// 仅调整顶部导航，页脚继续使用 NAV_ITEMS 的原有顺序。
+const HEADER_NAV_ITEMS = [
+  { href: "/", label: "首页" },
+  { ...NAV_ITEMS[1], label: "高中生AI学习路径" },
+  NAV_ITEMS[2],
+  NAV_ITEMS[0],
+];
+
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -33,7 +41,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV_ITEMS.map((item) => (
+          {HEADER_NAV_ITEMS.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -87,7 +95,7 @@ export function Header() {
       {open ? (
         <nav className="border-t border-line bg-surface md:hidden">
           <div className="container-page flex flex-col py-2">
-            {NAV_ITEMS.map((item) => (
+            {HEADER_NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
